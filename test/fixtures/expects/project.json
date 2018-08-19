@@ -1,0 +1,47 @@
+{
+  "wikis": [
+  ],
+  "libs": {
+    "Foo Lib" : {
+      "namespace" : "",
+      "original" : "abc\ncool\ndef",
+      "code" : "abc\n###1###\ndef",
+      "require" : {
+        "1" : {
+          "name" : "Nice Lib",
+          "old" : "cool"
+        }
+      },
+      "data" : [
+        ["name", "Foo Lib"],
+        ["snippet", "foo"],
+        ["alias", "ff bar_next"],
+        ["verify-name", "string"],
+        ["verify-url", "URL"],
+        ["verify-solution", "URL"],
+        ["verify-todo-name", "string"],
+        ["verify-todo-url", "problem-URL"]
+      ],
+      "finished" : false,
+      "processing" : false
+    },
+    "Bar Lib" : {
+      "namespace" : "hoge",
+      "code" : "nice",
+      "require" : {
+      },
+      "data" : [],
+      "finished" : false,
+      "processing" : false
+    },
+    "Baz Lib" : {
+      "namespace" : "hogehoge/fuga",
+      "code" : "nice",
+      "require" : {
+      },
+      "data" : [],
+      "finished" : false,
+      "processing" : false
+    }
+  }
+}

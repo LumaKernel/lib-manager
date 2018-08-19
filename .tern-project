@@ -1,0 +1,14 @@
+{
+  "libs": [
+  ],
+  "plugins": {
+    "es_modules": {},
+    "node": {}
+  },
+  "loadEagerly" : [
+    "**/*.js"
+  ],
+  "dontLoad": [
+    "node_modules/**"
+  ]
+}
