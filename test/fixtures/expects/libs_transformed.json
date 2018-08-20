@@ -1,0 +1,139 @@
+{
+  "Foo Lib": {
+    "namespace": "",
+    "code": "/// --- Foo Lib {{{ ///\nnyan;\n{\n\n}\n/// }}}--- ///\n\n/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///",
+    "refactored": "// @import header\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n\n// @@\n// @name Foo Lib\n// @snippet foo\n// @alias ff bar_next\n// @verify-name string\n// @verify-url URL\n// @verify-solution URL\n// @verify-todo-name string\n// @verify-todo-url problem-URL\n\n/// --- Foo Lib {{{ ///\nnyan;\n{\n\n}\n/// }}}--- ///\n\n/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///\n",
+    "data": [
+      [
+        "import",
+        "header"
+      ],
+      [
+        "name",
+        "Foo Lib"
+      ],
+      [
+        "snippet",
+        "foo"
+      ],
+      [
+        "alias",
+        "ff bar_next"
+      ],
+      [
+        "verify-name",
+        "string"
+      ],
+      [
+        "verify-url",
+        "URL"
+      ],
+      [
+        "verify-solution",
+        "URL"
+      ],
+      [
+        "verify-todo-name",
+        "string"
+      ],
+      [
+        "verify-todo-url",
+        "problem-URL"
+      ]
+    ],
+    "old": "// @import header\n// @@\n// @name Foo Lib\n// @snippet foo\n// @alias ff bar_next\n// @verify-name string\n// @verify-url URL\n// @verify-solution URL\n// @verify-todo-name string\n// @verify-todo-url problem-URL\n\n/// --- Foo Lib {{{ ///\nnyan;\n{\n  /// --- Bar Lib {{{ ///\n  piyo;\n  /// }}}--- ///\n}\n/// }}}--- ///\n\n/// --- Baz Lib {{{ ///\nhello;\n/// }}}--- ///\n",
+    "require": [
+      {
+        "old": "  /// --- Bar Lib {{{ ///\n  piyo;\n  /// }}}--- ///",
+        "name": "Bar Lib",
+        "id": 1
+      },
+      {
+        "old": "/// --- Baz Lib {{{ ///\nhello;\n/// }}}--- ///",
+        "name": "Baz Lib",
+        "id": 2
+      }
+    ],
+    "import": [
+      {
+        "name": "header",
+        "old": "",
+        "id": 3
+      }
+    ],
+    "finished": true,
+    "processing": true
+  },
+  "Baz Lib": {
+    "namespace": "fuga",
+    "code": "/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///",
+    "refactored": "// @name Baz Lib\n// @title Baz World\n// @id baz-world\n/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///",
+    "data": [
+      [
+        "name",
+        "Baz Lib"
+      ],
+      [
+        "title",
+        "Baz World"
+      ],
+      [
+        "id",
+        "baz-world"
+      ]
+    ],
+    "old": "// @name Baz Lib\n// @title Baz World\n// @id baz-world\n/// --- Baz Lib {{{\nstruct Ex {\n};\n\n/// }}}--- ///",
+    "require": [],
+    "import": [],
+    "finished": true,
+    "processing": true
+  },
+  "FugaBar": {
+    "namespace": "fuga/foobar",
+    "code": "/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more",
+    "refactored": "// @name FugaBar\n/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n",
+    "data": [
+      [
+        "name",
+        "FugaBar"
+      ]
+    ],
+    "old": "// @name FugaBar\n/// --- Baz Lib {{{\nstruct Ex {\n};\n\n/// }}}--- ///\n\n// and some more\n",
+    "require": [],
+    "import": [],
+    "finished": true,
+    "processing": true
+  },
+  "FugaFoo": {
+    "namespace": "fuga/foobar",
+    "code": "/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more",
+    "refactored": "// @name FugaFoo\n/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n",
+    "data": [
+      [
+        "name",
+        "FugaFoo"
+      ]
+    ],
+    "old": "// @name FugaFoo\n/// --- Baz Lib {{{\nstruct Ex {\n};\n\n/// }}}--- ///\n\n// and some more\n",
+    "require": [],
+    "import": [],
+    "finished": true,
+    "processing": true
+  },
+  "Bar Lib": {
+    "namespace": "hoge",
+    "code": "",
+    "refactored": "// @name Bar Lib",
+    "data": [
+      [
+        "name",
+        "Bar Lib"
+      ]
+    ],
+    "old": "// @name Bar Lib",
+    "require": [],
+    "import": [],
+    "finished": true,
+    "processing": true
+  }
+}

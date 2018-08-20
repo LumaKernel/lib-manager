@@ -1,7 +1,12 @@
 #!/usr/bin/env node
 import program from 'commander'
-import makeProject from './makeProject'
+import makeProject from './makers/makeProject'
 import makeConfig from './makeConfig'
+import { resolve } from 'path'
+import defaultConfig from './constants/defaultConfig'
+import {echo, test} from 'shelljs'
+import {toYaml} from 'toYaml'
+const defaultSettingFile = 'libman.yml'
 
 program
   .version('0.1.0', '-v, --version')
@@ -11,7 +16,8 @@ program
   .commscription('check only')
   .usage('[options] <dir>')
   .action(async (dir, cmd) => {
-    const config = makeConfig(dir, cmd.setting)
+    const setting = cmd.setting || defaultSettingFile
+    const config = makeConfig(dir, setting)
     const project = makeProject(config)
     // await check(dir, cmd)
   })
@@ -20,9 +26,11 @@ program
   .command('fix')
   .description('check and fix it')
   .usage('[options] <dir>')
-  .option('-y, --yes', 'skip confirm')
   .action(async (dir, cmd) => {
-    const config = makeConfig(dir, cmd.setting)
+    const setting = cmd.setting || defaultSettingFile
+    const config = makeConfig(dir, setting)
+    const project = makeProject(config)
+    backup(config)
     // await check(dir, cmd)
     // if (cmd.yes) fix(dir, cmd)
   })
@@ -32,7 +40,8 @@ program
   .usage('[options] <dir>')
   .option('-f, --fix', 'when check is failed, fix and build')
   .action(async (dir, cmd) => {
-    const config = makeConfig(dir, cmd.setting)
+    const setting = cmd.setting || defaultSettingFile
+    const config = makeConfig(dir, setting)
     // const ok = await check(dir, cmd)
     // if (ok) fix(dir, cmd)
   })
@@ -43,7 +52,10 @@ program
   .usage('[options] <dir>')
   .option('-d, --default', 'use default setting')
   .action(async (dir, cmd) => {
-    const config = makeConfig(dir, cmd.setting)
+    const setting = cmd.setting || defaultSettingFile
+    if (test('-e', setting)) throw `${dir} : ${setting} already exists`
+    const cfgObj = cmd.default ? defaultConfig() : {}
+    echo(toYaml(cfgObj)).to(resolve(process.cwd(), setting))
   })
 
 program
@@ -52,7 +64,8 @@ program
   .usage('[options] <dir>')
   .option('-d, --default', 'use default setting')
   .action(async (dir, cmd) => {
-    const config = makeConfig(dir, cmd.setting)
+    const setting = cmd.setting || defaultSettingFile
+    const config = makeConfig(dir, setting)
   })
 
 program.parse(process.argv)

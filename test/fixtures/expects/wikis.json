@@ -1,0 +1,35 @@
+{
+  "type": "dir",
+  "path": "",
+  "child": [
+    {
+      "type": "dir",
+      "path": "hoge",
+      "child": [
+        {
+          "path": "bar",
+          "type": "lib",
+          "wiki": "Barを紹介\n\nこれはbaz\n\n// @ Baz Lib\n\nそしてこれがBar\n\n// @ Bar Lib"
+        }
+      ]
+    },
+    {
+      "type": "dir",
+      "path": "fuga",
+      "wiki": "おおまかな解説ページだよ\n",
+      "child": [
+        {
+          "path": "baz",
+          "type": "lib",
+          "wiki": "ばずりぶ\n\n// @ Baz Lib\n"
+        },
+        {
+          "type": "one",
+          "path": "foobar",
+          "wiki": "Fugaを発展させます．\n\n### fuga-foo\n\n$1 + 1 = 2$\n\n// @ FugaFoo\n\n### fuga-bar\n\n// @ FugaBar\n\n\n",
+          "child": []
+        }
+      ]
+    }
+  ]
+}

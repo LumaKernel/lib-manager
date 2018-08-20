@@ -4,6 +4,8 @@
     "node": true
   },
   "rules": {
-    "comma-dangle": "off"
+    "comma-dangle": "off",
+    "no-sequences":"off",
+    "no-throw-literal":"off"
   }
 }

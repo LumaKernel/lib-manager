@@ -1,17 +1,15 @@
 import test from 'ava'
-import pify from 'pify'
-import path from 'path'
-import { execFile } from 'child_process'
-import {format} from '../formatter'
+import { cp } from 'shelljs'
 import defaultConfig from '../constants/defaultConfig'
-import {cp, rm} from 'shelljs'
+import { format } from '../formatter'
 
 test.beforeEach(t => {
   const work = './tmp/' + Math.random().toString(36).slice(-8)
   t.context.work = work
   cp('-R', './test/fixtures/workspace', work)
   t.context.config = {
-    ...defaultConfig(work),
+    ...defaultConfig(),
+    WorkingDir: work
   }
 })
 

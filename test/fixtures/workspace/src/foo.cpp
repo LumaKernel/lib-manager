@@ -1,6 +1,6 @@
 // @import header
 // @@
-// @name Foo lib
+// @name Foo Lib
 // @snippet foo
 // @alias ff bar_next
 // @verify-name string

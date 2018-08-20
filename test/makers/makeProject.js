@@ -1,7 +1,7 @@
 import test from 'ava'
 import path from 'path'
-import makeProject from '../makeProject'
-import defaultConfig from '../constants/defaultConfig'
+import makeProject from '../../makers/makeProject'
+import defaultConfig from '../../constants/defaultConfig'
 import {cp, rm} from 'shelljs'
 
 test.beforeEach(t => {
@@ -9,7 +9,8 @@ test.beforeEach(t => {
   t.context.work = work
   cp('-R', './test/fixtures/workspace', work)
   t.context.config = {
-    ...defaultConfig(work),
+    ...defaultConfig(),
+    WorkingDir: work
   }
 })
 
@@ -18,7 +19,4 @@ test.afterEach(t => {
   // rm(t.context.work)
 })
 
-test(async t => {
-  const project = await makeProject(t.context.config)
-  t.log(project)
-})
+test.todo('write')

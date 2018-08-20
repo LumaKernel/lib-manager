@@ -1,0 +1,6 @@
+type: dir
+wiki: true
+title: 犬のはなし
+order:
+  - baz
+  - foobar

@@ -1,10 +1,10 @@
-import path from "path"
 // YAML用
-module.exports = (dir) => ({
-  WorkingDir : path.resolve(dir),
-  TempDir : "./tmp",
-  ClangFormatOptionPath : "./.clang-format",
+module.exports = () => ({
+  WorkingDir: './',
+  SrcDir: './src',
+  TempDir: './tmp',
+  ClangFormatOptionPath: './.clang-format',
   FormatOption: {
-    AllowStructOneLine : true,
+    AllowStructOneLine: true,
   },
 })
