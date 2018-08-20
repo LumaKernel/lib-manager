@@ -2,6 +2,7 @@
 // @@
 // @name Foo Lib
 // @snippet foo
+// @alias heyhey
 // @alias ff bar_next
 // @verify-name string
 // @verify-url URL

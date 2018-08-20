@@ -1,13 +1,13 @@
-import { cp, mkdir, test as stest } from 'shelljs'
+import { copySync, existsSync, mkdirsSync, removeSync } from 'fs-extra'
 import defaultConfig from '../../constants/defaultConfig'
 
 export function prepareWorkSpace (test) {
   test.beforeEach(t => {
     const work = './tmp/' + Math.random().toString(36).slice(-8)
     t.context.work = work
-    mkdir('-p', './tmp')
-    cp('-R', './test/fixtures/workspace', work)
-    t.true(stest('-ed', work))
+    mkdirsSync('./tmp')
+    copySync('./test/fixtures/workspace', work)
+    t.true(existsSync(work))
     t.context.config = {
       ...defaultConfig(),
       WorkingDir: work
@@ -15,7 +15,6 @@ export function prepareWorkSpace (test) {
   })
 
   test.afterEach(t => {
-    // よく動かないf
-    // rm(t.context.work)
+    if (!t.context.save) removeSync(t.context.work)
   })
 }

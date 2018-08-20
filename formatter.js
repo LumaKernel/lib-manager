@@ -1,8 +1,8 @@
-import fs from 'fs'
+import { exec } from 'child_process'
+import { existsSync, mkdirsSync, readFileSync, removeSync, writeFileSync } from 'fs-extra'
 import path from 'path'
 import pify from 'pify'
-import { exec } from 'child_process'
-import { mkdir, rm, test } from 'shelljs'
+import makeTemp from './helpers/makeTemp'
 
 // 独自ルールでフォーマット
 export async function format (code, config) {
@@ -15,18 +15,18 @@ export async function format (code, config) {
 
 export async function clangFormat (code, config) {
   // tmpに作業フォルダを作る
-  // .clang-formatなどを設置
-  // clang-formatをかける
-  const work = path.resolve(process.cwd(), config.WorkingDir, config.TempDir, Math.random().toString(36).slice(-8))
+  const temp = makeTemp(config)
   const originalOpt = path.resolve(process.cwd(), config.WorkingDir, config.ClangFormatOptionPath)
-  if (!test('-ef', originalOpt)) throw `${originalOpt} not found`
-  mkdir('-p', work)
-  const tmp = path.resolve(work, 'tmp.cpp')
-  const opt = path.resolve(work, '.clang-format')
-  await pify(fs.writeFile)(tmp, code)
-  await pify(fs.writeFile)(opt, await pify(fs.readFile)(originalOpt))
+  if (!existsSync(originalOpt)) throw `${originalOpt} not found`
+  mkdirsSync(temp)
+  const tmp = path.resolve(temp, 'tmp.cpp')
+  const opt = path.resolve(temp, '.clang-format')
+  // .clang-formatなどを設置
+  writeFileSync(tmp, code)
+  writeFileSync(opt, readFileSync(originalOpt))
+  // clang-formatをかける
   const formatted = await pify(exec)(`clang-format ${tmp}`, { style: 'file' })
   // 作業フォルダごと消す
-  rm('-r', work)
+  removeSync(temp)
   return formatted
 }

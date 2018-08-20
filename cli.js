@@ -1,14 +1,15 @@
 #!/usr/bin/env node
 import program from 'commander'
-import { writeFileSync } from 'fs'
+import { existsSync, removeSync, writeFileSync } from 'fs-extra'
 import { resolve } from 'path'
-import { test, exit, rm } from 'shelljs'
+import { exit } from 'shelljs'
 import { toYaml } from 'toYaml'
 import { check } from './commands/check'
 import defaultConfig from './constants/defaultConfig'
 import makeConfig from './makeConfig'
 import makeProject from './makers/makeProject'
 import fix from './transformers/commands/fix'
+
 const defaultSettingFile = 'libman.yml'
 
 program
@@ -73,7 +74,7 @@ program
   .option('-d, --default', 'use default setting')
   .action(async (dir, cmd) => {
     const setting = cmd.setting || defaultSettingFile
-    if (test('-e', setting)) throw `${dir} : ${setting} already exists`
+    if (existsSync(setting)) throw `${dir} : ${setting} already exists`
     const cfgObj = cmd.default ? defaultConfig() : {}
     writeFileSync(resolve(process.cwd(), setting), toYaml(cfgObj))
   })
@@ -88,7 +89,7 @@ program
     const work = resolve(process.cwd(), config.WorkingDir)
     const tmp = resolve(work, config.TempDir)
     const dist = resolve(work, config.DistDir)
-    rm(tmp, dist)
+    removeSync(tmp, dist)
   })
 
 program.parse(process.argv)

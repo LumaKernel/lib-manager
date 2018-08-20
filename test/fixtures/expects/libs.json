@@ -3,12 +3,9 @@
     "namespace": "",
     "filename": "foo.cpp",
     "code": "\n\n/// --- Foo Lib {{{ ///\nnyan;\n{\n###1###\n}\n/// }}}--- ///\n\n###2###\n",
-    "refactored": "###3###\n// @name Foo Lib\n// @snippet foo\n// @alias ff bar_next\n// @verify-name string\n// @verify-url URL\n// @verify-solution URL\n// @verify-todo-name string\n// @verify-todo-url problem-URL\n\n/// --- Foo Lib {{{ ///\nnyan;\n{\n###1###\n}\n/// }}}--- ///\n\n###2###\n",
+    "refactored": "###3###\n// @name Foo Lib\n// @snippet foo\n// @alias heyhey\n// @alias ff bar_next\n// @verify-name string\n// @verify-url URL\n// @verify-solution URL\n// @verify-todo-name string\n// @verify-todo-url problem-URL\n\n/// --- Foo Lib {{{ ///\nnyan;\n{\n###1###\n}\n/// }}}--- ///\n\n###2###\n",
+    "enclosed": "/// --- Foo Lib {{{ ///\nnyan;\n{\n###1###\n}\n/// }}}--- ///",
     "data": [
-      [
-        "import",
-        "header"
-      ],
       [
         "name",
         "Foo Lib"
@@ -16,6 +13,10 @@
       [
         "snippet",
         "foo"
+      ],
+      [
+        "alias",
+        "heyhey"
       ],
       [
         "alias",
@@ -42,7 +43,7 @@
         "problem-URL"
       ]
     ],
-    "old": "// @import header\n// @@\n// @name Foo Lib\n// @snippet foo\n// @alias ff bar_next\n// @verify-name string\n// @verify-url URL\n// @verify-solution URL\n// @verify-todo-name string\n// @verify-todo-url problem-URL\n\n/// --- Foo Lib {{{ ///\nnyan;\n{\n  /// --- Bar Lib {{{ ///\n  piyo;\n  /// }}}--- ///\n}\n/// }}}--- ///\n\n/// --- Baz Lib {{{ ///\nhello;\n/// }}}--- ///\n",
+    "old": "// @import header\n// @@\n// @name Foo Lib\n// @snippet foo\n// @alias heyhey\n// @alias ff bar_next\n// @verify-name string\n// @verify-url URL\n// @verify-solution URL\n// @verify-todo-name string\n// @verify-todo-url problem-URL\n\n/// --- Foo Lib {{{ ///\nnyan;\n{\n  /// --- Bar Lib {{{ ///\n  piyo;\n  /// }}}--- ///\n}\n/// }}}--- ///\n\n/// --- Baz Lib {{{ ///\nhello;\n/// }}}--- ///\n",
     "require": [
       {
         "old": "  /// --- Bar Lib {{{ ///\n  piyo;\n  /// }}}--- ///",
@@ -68,8 +69,9 @@
   "Baz Lib": {
     "namespace": "fuga",
     "filename": "baz.cpp",
-    "code": "/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///",
-    "refactored": "// @name Baz Lib\n// @title Baz World\n// @id baz-world\n/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///",
+    "code": "/// --- Baz Lib {{{ ///\n/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///\n/// }}}--- ///",
+    "refactored": "/// --- Baz Lib {{{ ///\n// @name Baz Lib\n// @title Baz World\n// @id baz-world\n/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///\n/// }}}--- ///",
+    "enclosed": "/// --- Baz Lib {{{ ///\n/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///",
     "data": [
       [
         "name",
@@ -93,8 +95,9 @@
   "FugaBar": {
     "namespace": "fuga/foobar",
     "filename": "fuga-bar.cpp",
-    "code": "/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n",
-    "refactored": "// @name FugaBar\n/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n",
+    "code": "/// --- FugaBar {{{ ///\n/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n\n/// }}}--- ///",
+    "refactored": "/// --- FugaBar {{{ ///\n// @name FugaBar\n/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n\n/// }}}--- ///",
+    "enclosed": "/// --- FugaBar {{{ ///\n/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///",
     "data": [
       [
         "name",
@@ -110,8 +113,9 @@
   "FugaFoo": {
     "namespace": "fuga/foobar",
     "filename": "fuga-foo.cpp",
-    "code": "/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n",
-    "refactored": "// @name FugaFoo\n/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n",
+    "code": "/// --- FugaFoo {{{ ///\n/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n\n/// }}}--- ///",
+    "refactored": "/// --- FugaFoo {{{ ///\n// @name FugaFoo\n/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n\n/// }}}--- ///",
+    "enclosed": "/// --- FugaFoo {{{ ///\n/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///",
     "data": [
       [
         "name",
@@ -127,17 +131,36 @@
   "Bar Lib": {
     "namespace": "hoge",
     "filename": "bar.cpp",
-    "code": "",
-    "refactored": "// @name Bar Lib",
+    "code": "/// --- Bar Lib {{{ ///\n\nconst int HEY = \"hello\";\n/// }}}--- ///",
+    "refactored": "/// --- Bar Lib {{{ ///\n###1###\n// @snippet wow\n// @options word\n// @title すごいbar!\n// @name Bar Lib\nconst int HEY = \"hello\";\n/// }}}--- ///",
+    "enclosed": "/// --- Bar Lib {{{ ///\n\nconst int HEY = \"hello\";\n/// }}}--- ///",
     "data": [
+      [
+        "snippet",
+        "wow"
+      ],
+      [
+        "options",
+        "word"
+      ],
+      [
+        "title",
+        "すごいbar!"
+      ],
       [
         "name",
         "Bar Lib"
       ]
     ],
-    "old": "// @name Bar Lib",
+    "old": "// @import header\n#include <iostream>\n// @@\n// @snippet wow\n// @options word\n// @title すごいbar!\n// @name Bar Lib\nconst int HEY = \"hello\";",
     "require": [],
-    "import": [],
+    "import": [
+      {
+        "name": "header",
+        "old": "#include <iostream>",
+        "id": 1
+      }
+    ],
     "finished": false,
     "processing": false
   }
