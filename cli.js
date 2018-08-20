@@ -2,8 +2,9 @@
 import program from 'commander'
 import { writeFileSync } from 'fs'
 import { resolve } from 'path'
-import { test } from 'shelljs'
+import { test, exit, rm } from 'shelljs'
 import { toYaml } from 'toYaml'
+import { check } from './commands/check'
 import defaultConfig from './constants/defaultConfig'
 import makeConfig from './makeConfig'
 import makeProject from './makers/makeProject'
@@ -15,13 +16,20 @@ program
   .option('-s, --setting', 'YAML setting file path')
 
 program
-  .commscription('check only')
+  .command('check')
+  .description('check only')
   .usage('[options] <dir>')
   .action(async (dir, cmd) => {
     const setting = cmd.setting || defaultSettingFile
     const config = makeConfig(dir, setting)
     const project = await makeProject(config)
-    // await check(dir, cmd)
+    const changes = check(config, project)
+    if (changes.length === 0) {
+      console.log('no file needs fixing')
+    } else {
+      console.log('these files will be replaced when fixing')
+      changes.forEach(change => { console.log(change) })
+    }
   })
 
 program
@@ -42,8 +50,20 @@ program
   .action(async (dir, cmd) => {
     const setting = cmd.setting || defaultSettingFile
     const config = makeConfig(dir, setting)
-    // const ok = await check(dir, cmd)
-    // if (ok) fix(dir, cmd)
+    const project = await makeProject(config)
+    const changes = check(config, project)
+    if (changes.length !== 0) {
+      if (cmd.fix) {
+        console.console(`fixing...`)
+        fix(config, project)
+      } else {
+        console.error(`${dir} : you need to fix`)
+        exit(1)
+      }
+    } else {
+      console.console(`passed checking`)
+    }
+    console.log('building...')
   })
 
 program
@@ -62,10 +82,13 @@ program
   .command('clean')
   .description('delete tmp, dist dir')
   .usage('[options] <dir>')
-  .option('-d, --default', 'use default setting')
   .action(async (dir, cmd) => {
     const setting = cmd.setting || defaultSettingFile
     const config = makeConfig(dir, setting)
+    const work = resolve(process.cwd(), config.WorkingDir)
+    const tmp = resolve(work, config.TempDir)
+    const dist = resolve(work, config.DistDir)
+    rm(tmp, dist)
   })
 
 program.parse(process.argv)
