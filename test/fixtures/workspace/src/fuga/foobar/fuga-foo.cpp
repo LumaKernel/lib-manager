@@ -1,5 +1,6 @@
 // @name FugaFoo
-/// --- Baz Lib {{{
+// NOTE : nothing
+/// --- Baz Lib {{{ ///
 struct Ex {
 };
 
