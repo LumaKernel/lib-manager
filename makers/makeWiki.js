@@ -2,7 +2,8 @@ import {cat, test} from 'shelljs'
 import {resolve} from 'path'
 import yaml from 'js-yaml'
 
-export default function makeWiki (config, nowdir, path = '') {
+export default function makeWiki (config, nowdir = null, path = '') {
+  if (nowdir === null) nowdir = resolve(process.cwd(), config.WorkingDir, config.SrcDir)
   const wiki = {}
   const wikiYAML = resolve(nowdir, 'wiki.yml')
   if (!test('-e', wikiYAML)) return false

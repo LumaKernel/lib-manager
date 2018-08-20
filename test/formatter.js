@@ -1,11 +1,12 @@
 import test from 'ava'
-import { cp } from 'shelljs'
+import { cp, mkdir } from 'shelljs'
 import defaultConfig from '../constants/defaultConfig'
 import { format } from '../formatter'
 
 test.beforeEach(t => {
   const work = './tmp/' + Math.random().toString(36).slice(-8)
   t.context.work = work
+  mkdir('-p', './tmp')
   cp('-R', './test/fixtures/workspace', work)
   t.context.config = {
     ...defaultConfig(),

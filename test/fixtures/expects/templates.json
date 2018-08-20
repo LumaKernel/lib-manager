@@ -1,5 +1,6 @@
 {
   "header": {
+    "namespace": "",
     "old": "#include<bits/stdc++.h>\n      using namespace std;\n\n\n\nusing ll = long long;\n",
     "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n"
   }

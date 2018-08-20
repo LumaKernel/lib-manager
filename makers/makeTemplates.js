@@ -15,7 +15,7 @@ export default async function makeTemplates (config) {
     const old = cat(path).stdout
     const code = await format(old, config)
     const name = el[1].match(/_(.+)\.cpp/)[1]
-    templates[name] = {old, code}
+    templates[name] = {old, code, namespace: el[0].join('/')}
   })
   return templates
 }

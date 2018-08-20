@@ -1,12 +1,13 @@
 import test from 'ava'
 import { resolve } from 'path'
-import { cat, cp } from 'shelljs'
+import { cat, cp, mkdir } from 'shelljs'
 import defaultConfig from '../../constants/defaultConfig'
 import makeWiki from '../../makers/makeWiki'
 
 test.beforeEach(t => {
   const work = './tmp/' + Math.random().toString(36).slice(-8)
   t.context.work = work
+  mkdir('-p', './tmp')
   cp('-R', './test/fixtures/workspace', work)
   t.context.config = {
     ...defaultConfig(),
@@ -21,8 +22,7 @@ test.afterEach(t => {
 
 test(async t => {
   const exp = JSON.parse(cat('./test/fixtures/expects/wikis.json').stdout)
-  const dir = resolve(process.cwd(), t.context.config.WorkingDir, t.context.config.SrcDir)
-  const wikis = await makeWiki(t.context.config, dir)
+  const wikis = await makeWiki(t.context.config)
   t.log(JSON.stringify(wikis))
   t.deepEqual(wikis, exp)
 })

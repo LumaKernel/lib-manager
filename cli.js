@@ -1,13 +1,12 @@
 #!/usr/bin/env node
 import program from 'commander'
-import makeProject from './makers/makeProject'
-import makeConfig from './makeConfig'
 import { resolve } from 'path'
+import { echo, test } from 'shelljs'
+import { toYaml } from 'toYaml'
 import defaultConfig from './constants/defaultConfig'
-import {echo, test} from 'shelljs'
-import {toYaml} from 'toYaml'
-import backup from './makers/backup'
-import fix from './transformers/fix'
+import makeConfig from './makeConfig'
+import makeProject from './makers/makeProject'
+import fix from './transformers/commands/fix'
 const defaultSettingFile = 'libman.yml'
 
 program
@@ -20,7 +19,7 @@ program
   .action(async (dir, cmd) => {
     const setting = cmd.setting || defaultSettingFile
     const config = makeConfig(dir, setting)
-    const project = makeProject(config)
+    const project = await makeProject(config)
     // await check(dir, cmd)
   })
 
@@ -31,7 +30,7 @@ program
   .action(async (dir, cmd) => {
     const setting = cmd.setting || defaultSettingFile
     const config = makeConfig(dir, setting)
-    const project = makeProject(config)
+    const project = await makeProject(config)
     fix(config, project)
   })
 
