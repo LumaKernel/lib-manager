@@ -1,7 +1,7 @@
 import makeLibraries from './makeLibraries'
 import makeTemplates from './makeTemplates'
 import makeWiki from './makeWiki'
-import transformLibraries from '../transformers/transformLibraries';
+import transformLibraries from '../transformers/transformLibraries'
 require('array-foreach-async')
 
 export default async function makeProject (config) {
@@ -9,6 +9,6 @@ export default async function makeProject (config) {
   const templates = await makeTemplates(config)
   const wikis = makeWiki(config)
   if (!wikis) throw `${config.WokingDir} : you must put wiki.yml`
-  transformLibraries(libs, templates)
+  await transformLibraries(config, libs, templates)
   return { wikis, libs, templates }
 }

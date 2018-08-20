@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 import program from 'commander'
+import { writeFileSync } from 'fs'
 import { resolve } from 'path'
-import { echo, test } from 'shelljs'
+import { test } from 'shelljs'
 import { toYaml } from 'toYaml'
 import defaultConfig from './constants/defaultConfig'
 import makeConfig from './makeConfig'
@@ -54,7 +55,7 @@ program
     const setting = cmd.setting || defaultSettingFile
     if (test('-e', setting)) throw `${dir} : ${setting} already exists`
     const cfgObj = cmd.default ? defaultConfig() : {}
-    echo(toYaml(cfgObj)).to(resolve(process.cwd(), setting))
+    writeFileSync(resolve(process.cwd(), setting), toYaml(cfgObj))
   })
 
 program

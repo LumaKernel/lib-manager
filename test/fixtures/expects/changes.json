@@ -3,6 +3,5 @@
   "fuga/baz.cpp",
   "fuga/foobar/fuga-bar.cpp",
   "fuga/foobar/fuga-foo.cpp",
-  "hoge/bar.cpp",
-  "header"
+  "_header.cpp"
 ]

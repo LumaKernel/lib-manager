@@ -2,8 +2,8 @@
   "Foo Lib": {
     "namespace": "",
     "filename": "foo.cpp",
-    "code": "/// --- Foo Lib {{{ ///\nnyan;\n{\n\n}\n/// }}}--- ///\n\n/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///",
-    "refactored": "// @import header\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n\n// @@\n// @name Foo Lib\n// @snippet foo\n// @alias ff bar_next\n// @verify-name string\n// @verify-url URL\n// @verify-solution URL\n// @verify-todo-name string\n// @verify-todo-url problem-URL\n\n/// --- Foo Lib {{{ ///\nnyan;\n{\n\n}\n/// }}}--- ///\n\n/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///\n",
+    "code": "/// --- Foo Lib {{{ ///\nnyan;\n{}\n/// }}}--- ///\n\n/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///",
+    "refactored": "// @import header\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n\n// @@\n// @name Foo Lib\n// @snippet foo\n// @alias ff bar_next\n// @verify-name string\n// @verify-url URL\n// @verify-solution URL\n// @verify-todo-name string\n// @verify-todo-url problem-URL\n\n/// --- Foo Lib {{{ ///\nnyan;\n{}\n/// }}}--- ///\n\n/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///\n",
     "data": [
       [
         "import",
