@@ -25,7 +25,7 @@
       "esm"
     ],
     "files": [
-      "test/**/*.js",
+      "test/**/*",
       "!**/helpers/**/*.js"
     ]
   },
