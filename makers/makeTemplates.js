@@ -1,5 +1,5 @@
-import { ls, cat } from 'shelljs'
 import { resolve } from 'path'
+import { cat } from 'shelljs'
 import { format } from '../formatter'
 import getFileStructure from './getFileStructure'
 require('array-foreach-async')

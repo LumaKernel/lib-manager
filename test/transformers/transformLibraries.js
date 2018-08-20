@@ -8,6 +8,6 @@ test('transform libs', async t => {
   const templates = JSON.parse(cat('./test/fixtures/expects/templates.json'))
   const exp = JSON.parse(cat('./test/fixtures/expects/libs_transformed.json'))
   transformLibraries(libs, templates)
-  // t.log(JSON.stringify(libs))
+  t.log(JSON.stringify(libs))
   t.deepEqual(libs, exp)
 })

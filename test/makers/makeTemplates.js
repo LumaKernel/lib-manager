@@ -1,7 +1,6 @@
 import test from 'ava'
-import path from 'path'
+import { cat, cp } from 'shelljs'
 import defaultConfig from '../../constants/defaultConfig'
-import {cp, rm, cat} from 'shelljs'
 import makeTemplates from '../../makers/makeTemplates'
 
 test.beforeEach(t => {

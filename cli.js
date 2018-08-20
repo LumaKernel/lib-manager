@@ -6,6 +6,8 @@ import { resolve } from 'path'
 import defaultConfig from './constants/defaultConfig'
 import {echo, test} from 'shelljs'
 import {toYaml} from 'toYaml'
+import backup from './makers/backup'
+import fix from './transformers/fix'
 const defaultSettingFile = 'libman.yml'
 
 program
@@ -30,9 +32,7 @@ program
     const setting = cmd.setting || defaultSettingFile
     const config = makeConfig(dir, setting)
     const project = makeProject(config)
-    backup(config)
-    // await check(dir, cmd)
-    // if (cmd.yes) fix(dir, cmd)
+    fix(config, project)
   })
 
 program

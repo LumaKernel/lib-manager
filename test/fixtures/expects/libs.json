@@ -1,6 +1,7 @@
 {
   "Foo Lib": {
     "namespace": "",
+    "filename": "foo.cpp",
     "code": "\n\n/// --- Foo Lib {{{ ///\nnyan;\n{\n###1###\n}\n/// }}}--- ///\n\n###2###\n",
     "refactored": "###3###\n// @name Foo Lib\n// @snippet foo\n// @alias ff bar_next\n// @verify-name string\n// @verify-url URL\n// @verify-solution URL\n// @verify-todo-name string\n// @verify-todo-url problem-URL\n\n/// --- Foo Lib {{{ ///\nnyan;\n{\n###1###\n}\n/// }}}--- ///\n\n###2###\n",
     "data": [
@@ -66,6 +67,7 @@
   },
   "Baz Lib": {
     "namespace": "fuga",
+    "filename": "baz.cpp",
     "code": "/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///",
     "refactored": "// @name Baz Lib\n// @title Baz World\n// @id baz-world\n/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///",
     "data": [
@@ -90,6 +92,7 @@
   },
   "FugaBar": {
     "namespace": "fuga/foobar",
+    "filename": "fuga-bar.cpp",
     "code": "/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n",
     "refactored": "// @name FugaBar\n/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n",
     "data": [
@@ -106,6 +109,7 @@
   },
   "FugaFoo": {
     "namespace": "fuga/foobar",
+    "filename": "fuga-foo.cpp",
     "code": "/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n",
     "refactored": "// @name FugaFoo\n/// --- Baz Lib {{{\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n",
     "data": [
@@ -122,6 +126,7 @@
   },
   "Bar Lib": {
     "namespace": "hoge",
+    "filename": "bar.cpp",
     "code": "",
     "refactored": "// @name Bar Lib",
     "data": [

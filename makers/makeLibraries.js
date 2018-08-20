@@ -75,6 +75,7 @@ export default async function makeLibraries (config) {
     // refactored からは消さない
     libs[name] = {
       namespace,
+      filename: el[1],
       code,
       refactored,
       data,

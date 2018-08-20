@@ -1,8 +1,6 @@
 import test from 'ava'
-import path from 'path'
-import makeProject from '../../makers/makeProject'
+import { cp } from 'shelljs'
 import defaultConfig from '../../constants/defaultConfig'
-import {cp, rm} from 'shelljs'
 
 test.beforeEach(t => {
   const work = './tmp/' + Math.random().toString(36).slice(-8)
