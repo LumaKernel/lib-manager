@@ -28,6 +28,7 @@
         {
           "type": "one",
           "title": "Fuga発展",
+          "permalink": "fuga-ex",
           "path": "foobar",
           "wiki": "Fugaを発展させます．\n\n### fuga-foo\n\n$1 + 1 = 2$\n\n// @ FugaFoo\n\n### fuga-bar\n\n// @ FugaBar\n\n\n",
           "child": []

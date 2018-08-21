@@ -33,10 +33,10 @@
         {
           "type": "one",
           "title": "Fuga発展",
+          "permalink": "fuga-ex",
           "path": "foobar",
-          "wiki": "---\nlayout: page\npermalink: fuga/foobar\ntitle: Fuga発展\n\n---\n\nFugaを発展させます．\n\n### fuga-foo\n\n$1 + 1 = 2$\n\n```cpp\n/// --- FugaFoo {{\"{{\"}}{ ///\n// NOTE : nothing\n/// --- Baz Lib {{\"{{\"}}{ ///\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n\n/// }}}--- ///\n```\n\n### fuga-bar\n\n```cpp\n/// --- FugaBar {{\"{{\"}}{ ///\n/// --- Baz Lib {{\"{{\"}}{ ///\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n\n/// }}}--- ///\n```\n\n\n",
-          "child": [],
-          "permalink": "fuga/foobar"
+          "wiki": "---\nlayout: page\npermalink: fuga-ex\ntitle: Fuga発展\n\n---\n\nFugaを発展させます．\n\n### fuga-foo\n\n$1 + 1 = 2$\n\n```cpp\n/// --- FugaFoo {{\"{{\"}}{ ///\n// NOTE : nothing\n/// --- Baz Lib {{\"{{\"}}{ ///\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n\n/// }}}--- ///\n```\n\n### fuga-bar\n\n```cpp\n/// --- FugaBar {{\"{{\"}}{ ///\n/// --- Baz Lib {{\"{{\"}}{ ///\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n\n/// }}}--- ///\n```\n\n\n",
+          "child": []
         }
       ],
       "permalink": "fuga"

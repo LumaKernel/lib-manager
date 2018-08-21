@@ -12,6 +12,9 @@ export default function defaultConfig () {
     },
     wikiYAML: {
       layout: 'page'
-    }
+    },
+    CopyWiki: false,
+    CopySnippet: false,
+    CopyPrintable: false,
   }
 }

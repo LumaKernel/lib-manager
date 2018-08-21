@@ -1,0 +1,1 @@
+{"Baz Lib":"/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///","FugaBar":"/// --- FugaBar {{{ ///\n/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n\n/// }}}--- ///"}

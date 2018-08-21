@@ -1,8 +1,8 @@
 import yaml from 'js-yaml'
+import { mdEscape } from '../helpers/escape'
 
 const libRegExp = name => new RegExp(
   String.raw`(?<=^|\n)// @ ${name}(?=\n|$)`, 'g')
-const mdEscape = code => code.replace(/\{\{/g, '{{"{{"}}')
 
 // dfs
 /**
@@ -14,7 +14,7 @@ export default function transformWiki (wikiYAML, wikis, libs, paths = []) {
     .filter(el => el.namespace === namespace &&
     el.filename === `${wikis.path}.cpp`)[0]
   paths = [...paths, wikis.path]
-  const permalink = paths.filter(e => e).join('/')
+  const permalink = wikis.permalink || paths.filter(e => e).join('/')
   if (wikis.wiki) {
     Object.entries(libs).forEach(([key, value]) => {
       wikis.wiki = wikis.wiki

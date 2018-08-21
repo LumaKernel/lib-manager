@@ -11,6 +11,6 @@ test('transform wiki', async t => {
   const libs = Object.freeze(JSON.parse(cat('./test/fixtures/expects/libs_transformed.json')))
   const exp = JSON.parse(cat('./test/fixtures/expects/wikis_transformed.json'))
   transformWiki(t.context.config.wikiYAML, wikis, libs)
-  // t.log(JSON.stringify(wikis))
+  t.log(JSON.stringify(wikis))
   t.deepEqual(wikis, exp)
 })
