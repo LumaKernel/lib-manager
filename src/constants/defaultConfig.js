@@ -13,6 +13,9 @@ export default function defaultConfig () {
     wikiYAML: {
       layout: 'page'
     },
+    printableYAML: {
+      layout: 'printable'
+    },
     CopyWiki: false,
     CopySnippet: false,
     CopyPrintable: false,

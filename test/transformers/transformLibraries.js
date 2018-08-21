@@ -1,7 +1,6 @@
 import test from 'ava'
-import shelljs from 'shelljs'
-const { cat } = shelljs
-import transformLibraries from '../../transformers/transformLibraries'
+import { cat } from 'shelljs'
+import transformLibraries from '../../src/transformers/transformLibraries'
 import { prepareWorkSpace } from '../helpers/prepareWorkSpace'
 
 prepareWorkSpace(test)

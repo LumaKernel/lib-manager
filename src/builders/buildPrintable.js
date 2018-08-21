@@ -14,6 +14,6 @@ export default function buildPrintable (printableYAML, printlist, printed, libs)
   })
   return {
     printed,
-    printable: '```\n' + yaml.safeDump(printableYAML) + '\n```\n\n' + printRaw.join('\n\n')
+    printable: '---\n' + yaml.safeDump(printableYAML) + '\n---\n\n' + printRaw.join('\n\n')
   }
 }

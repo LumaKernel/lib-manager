@@ -1,7 +1,6 @@
 import test from 'ava'
-import shelljs from 'shelljs'
-const { cat } = shelljs
-import { makeSnippet } from '../../builders/buildSnippets'
+import { cat } from 'shelljs'
+import { makeSnippet } from '../../src/builders/buildSnippets'
 import { prepareWorkSpace } from '../helpers/prepareWorkSpace'
 
 prepareWorkSpace(test)

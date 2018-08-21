@@ -1,5 +1,5 @@
 import test from 'ava'
-import { format } from '../formatter'
+import { format } from '../src/formatter'
 import { prepareWorkSpace } from './helpers/prepareWorkSpace'
 
 prepareWorkSpace(test)

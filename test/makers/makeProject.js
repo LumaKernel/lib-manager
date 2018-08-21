@@ -1,7 +1,6 @@
 import test from 'ava'
-import shelljs from 'shelljs'
-const { cat } = shelljs
-import makeProject from '../../makers/makeProject'
+import { cat } from 'shelljs'
+import makeProject from '../../src/makers/makeProject'
 import { prepareWorkSpace } from '../helpers/prepareWorkSpace'
 
 prepareWorkSpace(test)

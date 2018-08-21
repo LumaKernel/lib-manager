@@ -1,3 +1,8 @@
+---
+layout: printable
+
+---
+
 <span class="lib-title">Baz Lib</span>
 
 ```

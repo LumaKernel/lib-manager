@@ -1,6 +1,5 @@
-import fs from 'fs-extra'
-const { copySync, existsSync, mkdirsSync, removeSync } = fs
-import defaultConfig from '../../constants/defaultConfig'
+import { copySync, existsSync, mkdirsSync, removeSync } from 'fs-extra'
+import defaultConfig from '../../src/constants/defaultConfig'
 
 /**
  * to stop to remove tmp dir,

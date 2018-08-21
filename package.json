@@ -29,12 +29,6 @@
     "prettier-eslint-cli": "^4.7.1"
   },
   "ava": {
-    "babel": {
-      "extensions": [
-        "js",
-        "mjs"
-      ]
-    },
     "require": [
       "esm"
     ],

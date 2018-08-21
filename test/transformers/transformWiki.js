@@ -1,7 +1,6 @@
 import test from 'ava'
-import shelljs from 'shelljs'
-const { cat } = shelljs
-import transformWiki from '../../transformers/transformWiki'
+import { cat } from 'shelljs'
+import transformWiki from '../../src/transformers/transformWiki'
 import { prepareWorkSpace } from '../helpers/prepareWorkSpace'
 
 prepareWorkSpace(test)

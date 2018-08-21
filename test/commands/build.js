@@ -1,12 +1,9 @@
 import test from 'ava'
-import shelljs from 'shelljs'
-const { cat } = shelljs
-import build from '../../commands/build'
+import { existsSync, readdirSync, readFileSync } from 'fs-extra'
+import { resolve } from 'path'
+import { cat } from 'shelljs'
+import build from '../../src/commands/build'
 import { prepareWorkSpace } from '../helpers/prepareWorkSpace'
-import path from 'path'
-const { resolve } = path
-import fs from 'fs-extra'
-const { readdirSync, readFileSync, existsSync } = fs
 
 prepareWorkSpace(test)
 
@@ -23,7 +20,7 @@ test.beforeEach(t => {
   config.CopyWiki = resolve(work, 'copy_wiki')
   config.CopySnippet = resolve(dist, 'copied_snippet.txt')
 
-  build(config, project)
+  build(config, project, true)
 })
 
 test('printed が新しく作られる', async t => {
@@ -39,9 +36,10 @@ test('printable.md が出力される', async t => {
   const config = t.context.config
   const dist = resolve(process.cwd(), config.WorkingDir, config.DistDir)
   const printableExp = cat('./test/fixtures/expects/printable.md').stdout
+  t.true(existsSync(resolve(dist, 'printable.md')))
   const printable = cat(resolve(dist, 'printable.md')).stdout
 
-  t.deepEqual(printable, printableExp)
+  t.is(printable, printableExp)
 })
 
 test('copywiki に指定したディレクトリにwikiがコピーされ，古いのは消される', async t => {

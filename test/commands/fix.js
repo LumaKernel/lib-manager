@@ -1,10 +1,9 @@
 import test from 'ava'
-import shelljs from 'shelljs'
-const { cat, cp, mkdir } = shelljs
-import { check } from '../../commands/check'
-import { fix } from '../../commands/fix'
-import defaultConfig from '../../constants/defaultConfig'
-import makeProject from '../../makers/makeProject'
+import { cat, cp, mkdir } from 'shelljs'
+import { check } from '../../src/commands/check'
+import { fix } from '../../src/commands/fix'
+import defaultConfig from '../../src/constants/defaultConfig'
+import makeProject from '../../src/makers/makeProject'
 
 test.beforeEach(t => {
   const work = './tmp/' + Math.random().toString(36).slice(-8)

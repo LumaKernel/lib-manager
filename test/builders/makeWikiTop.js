@@ -1,7 +1,6 @@
 import test from 'ava'
-import shelljs from 'shelljs'
-const { cat } = shelljs
-import makeWikiTop from '../../builders/makeWikiTop'
+import { cat } from 'shelljs'
+import makeWikiTop from '../../src/builders/makeWikiTop'
 import { prepareWorkSpace } from '../helpers/prepareWorkSpace'
 
 prepareWorkSpace(test)

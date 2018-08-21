@@ -1,5 +1,5 @@
 import test from 'ava'
-import { makeLib } from '../../makers/makeLib'
+import { makeLib } from '../../src/makers/makeLib'
 import { prepareWorkSpace } from '../helpers/prepareWorkSpace'
 
 prepareWorkSpace(test)
