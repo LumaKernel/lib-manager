@@ -1,5 +1,7 @@
-import { copySync, mkdirsSync } from 'fs-extra'
-import { resolve } from 'path'
+import fs from 'fs-extra'
+import path from 'path'
+const { copySync, mkdirsSync } = fs
+const { resolve } = path
 
 export default function backup (config) {
   const dir = resolve(process.cwd(), config.WorkingDir, config.BackUpDir)

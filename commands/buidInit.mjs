@@ -1,5 +1,7 @@
-import { resolve } from 'path'
-import { existsSync, writeFileSync, readFileSync } from 'fs-extra'
+import fs from 'fs-extra'
+import path from 'path'
+const { resolve } = path
+const { existsSync, writeFileSync, readFileSync } = fs
 
 export default function buildInit (config, project) {
   const src = resolve(process.cwd(), config.WorkingDir, config.SrcDir)

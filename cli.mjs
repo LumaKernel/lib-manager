@@ -1,16 +1,18 @@
-#!/usr/bin/env node
 import program from 'commander'
-import { existsSync, removeSync, writeFileSync } from 'fs-extra'
-import { resolve } from 'path'
-import { exit } from 'shelljs'
+import fs from 'fs-extra'
 import yaml from 'js-yaml'
+import path from 'path'
+import shelljs from 'shelljs'
+import buildInit from './commands/buidInit'
+import build from './commands/build'
 import { check } from './commands/check'
+import fix from './commands/fix'
 import defaultConfig from './constants/defaultConfig'
 import makeConfig from './makeConfig'
 import makeProject from './makers/makeProject'
-import fix from './transformers/commands/fix'
-import buildInit from './commands/buidInit'
-import build from './commands/build'
+const { resolve } = path
+const { exit } = shelljs
+const { existsSync, removeSync, writeFileSync } = fs
 
 const defaultSettingFile = 'libman.yml'
 
@@ -101,3 +103,5 @@ program
   })
 
 program.parse(process.argv)
+
+export { }

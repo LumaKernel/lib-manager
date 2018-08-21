@@ -1,7 +1,9 @@
-import { resolve } from 'path'
-import makeWikiTop from './makeWikiTop'
-import { readFileSync, writeFileSync, mkdirsSync } from 'fs-extra'
+import fs from 'fs-extra'
 import moment from 'moment'
+import path from 'path'
+import makeWikiTop from './makeWikiTop'
+const { resolve } = path
+const { readFileSync, writeFileSync, mkdirsSync } = fs
 
 const dateFormat = 'YYYY-MM-DD'
 const libmanPrefix = 'libman_auto_generated_'

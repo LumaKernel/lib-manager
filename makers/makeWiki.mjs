@@ -1,6 +1,8 @@
-import {cat, test} from 'shelljs'
-import {resolve} from 'path'
 import yaml from 'js-yaml'
+import path from 'path'
+import shelljs from 'shelljs'
+const {cat, test} = shelljs
+const {resolve} = path
 
 export default function makeWiki (config, nowdir = null, path = '') {
   if (nowdir === null) nowdir = resolve(process.cwd(), config.WorkingDir, config.SrcDir)

@@ -1,8 +1,10 @@
-import { removeSync, writeFileSync, mkdirsSync, copySync, existsSync, readFileSync, readdirSync, renameSync } from 'fs-extra'
-import { buildWiki } from '../builders/buildWiki'
-import { makeSnippet } from '../builders/buildSnippets'
-import { resolve } from 'path'
+import fs from 'fs-extra'
+import path from 'path'
 import buildPrintable from '../builders/buildPrintable'
+import { makeSnippet } from '../builders/buildSnippets'
+import { buildWiki } from '../builders/buildWiki'
+const { removeSync, writeFileSync, mkdirsSync, copySync, existsSync, readFileSync, readdirSync, renameSync } = fs
+const { resolve } = path
 
 const libmanPrefix = 'libman_auto_generated_'
 

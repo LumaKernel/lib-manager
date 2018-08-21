@@ -1,9 +1,12 @@
 import test from 'ava'
-import { resolve } from 'path'
-import { cat } from 'shelljs'
+import path from 'path'
+const { resolve } = path
+import shelljs from 'shelljs'
+const { cat } = shelljs
 import buildInit from '../../commands/buidInit'
 import { prepareWorkSpace } from '../helpers/prepareWorkSpace'
-import { removeSync } from 'fs-extra'
+import fs from 'fs-extra'
+const { removeSync } = fs
 
 prepareWorkSpace(test)
 

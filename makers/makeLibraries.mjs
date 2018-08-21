@@ -1,8 +1,11 @@
-import { resolve } from 'path'
-import { cat } from 'shelljs'
+import path from 'path'
+import shelljs from 'shelljs'
 import getFileStructure from './getFileStructure'
 import { makeLib } from './makeLib'
-require('array-foreach-async')
+import none from 'array-foreach-async'
+const { resolve } = path
+const { cat } = shelljs
+none // eslint-disable-line
 
 export default async function makeLibraries (config) {
   const {main} = getFileStructure(config)

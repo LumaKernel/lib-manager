@@ -1,5 +1,6 @@
 import test from 'ava'
-import { cat } from 'shelljs'
+import shelljs from 'shelljs'
+const { cat } = shelljs
 import makeTemplates from '../../makers/makeTemplates'
 import { prepareWorkSpace } from '../helpers/prepareWorkSpace'
 

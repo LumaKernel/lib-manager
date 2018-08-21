@@ -1,4 +1,5 @@
-import { copySync, existsSync, mkdirsSync, removeSync } from 'fs-extra'
+import fs from 'fs-extra'
+const { copySync, existsSync, mkdirsSync, removeSync } = fs
 import defaultConfig from '../../constants/defaultConfig'
 
 /**

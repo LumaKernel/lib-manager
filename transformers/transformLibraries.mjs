@@ -1,6 +1,7 @@
-import { hash } from '../id'
+import none from 'array-foreach-async'
 import { format } from '../formatter'
-require('array-foreach-async')
+import { hash } from '../id'
+none  // eslint-disable-line
 
 /**
  *  libsのcodeの処理をする, 破壊する

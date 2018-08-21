@@ -1,5 +1,7 @@
-import { resolve } from 'path'
-import { ls } from 'shelljs'
+import path from 'path'
+import shelljs from 'shelljs'
+const { resolve } = path
+const { ls } = shelljs
 
 export default function getFileStructure (config) {
   const src = resolve(process.cwd(), config.WorkingDir, config.SrcDir)

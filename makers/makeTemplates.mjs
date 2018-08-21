@@ -1,8 +1,11 @@
-import { resolve } from 'path'
-import { cat } from 'shelljs'
+import none from 'array-foreach-async'
+import path from 'path'
+import shelljs from 'shelljs'
 import { format } from '../formatter'
 import getFileStructure from './getFileStructure'
-require('array-foreach-async')
+const { resolve } = path
+const { cat } = shelljs
+none  // eslint-disable-line
 
 export default async function makeTemplates (config) {
   const {main} = getFileStructure(config)

@@ -1,5 +1,6 @@
 import test from 'ava'
-import { cat, cp, mkdir } from 'shelljs'
+import shelljs from 'shelljs'
+const { cat, cp, mkdir } = shelljs
 import { check } from '../../commands/check'
 import { fix } from '../../commands/fix'
 import defaultConfig from '../../constants/defaultConfig'

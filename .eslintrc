@@ -5,7 +5,10 @@
   },
   "rules": {
     "comma-dangle": "off",
-    "no-sequences":"off",
-    "no-throw-literal":"off"
+    "no-sequences": "off",
+    "no-throw-literal": "off"
+  },
+  "globals": {
+    "import": true
   }
 }

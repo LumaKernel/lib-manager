@@ -1,8 +1,9 @@
-import { resolve } from 'path'
-import { cat } from 'shelljs'
+import path from 'path'
+import shelljs from 'shelljs'
 import { format } from '../formatter'
 import { hash, makeIDMaker } from '../id'
-require('array-foreach-async')
+const { resolve } = path
+const { cat } = shelljs
 
 const importRegExp = /(?<=^|\n)\/\/ @import (.+)\n?([\s\S]*?)\n\/\/ @@(?=\n|$)/
 const dataRegExp = /(?<=^|\n)\/\/ @(.+?) (.+)(?:\n|$)/

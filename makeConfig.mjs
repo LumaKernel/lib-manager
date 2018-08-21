@@ -1,4 +1,5 @@
-import {cat, test} from 'shelljs'
+import shelljs from 'shelljs'
+const {cat, test} = shelljs
 import yaml from 'js-yaml'
 import defaultConfig from './constants/defaultConfig'
 
