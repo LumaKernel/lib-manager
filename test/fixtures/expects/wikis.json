@@ -4,6 +4,7 @@
   "child": [
     {
       "type": "dir",
+      "title": "ねこ",
       "path": "hoge",
       "child": [
         {
@@ -15,6 +16,7 @@
     },
     {
       "type": "dir",
+      "title": "犬のはなし",
       "path": "fuga",
       "wiki": "おおまかな解説ページだよ\n",
       "child": [
@@ -25,6 +27,7 @@
         },
         {
           "type": "one",
+          "title": "Fuga発展",
           "path": "foobar",
           "wiki": "Fugaを発展させます．\n\n### fuga-foo\n\n$1 + 1 = 2$\n\n// @ FugaFoo\n\n### fuga-bar\n\n// @ FugaBar\n\n\n",
           "child": []

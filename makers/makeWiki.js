@@ -13,6 +13,7 @@ export default function makeWiki (config, nowdir = null, path = '') {
     ...yaml.safeLoad(cat(wikiYAML).stdout),
   }
   wiki.type = wikiData.type
+  if (wikiData.title) wiki.title = wikiData.title
   wiki.path = path
   if (Array.isArray(typeof wikiData.orde)) throw `${nowdir} : order must be array`
   const wikipage = resolve(nowdir, 'wiki.md')

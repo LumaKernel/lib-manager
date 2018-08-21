@@ -10,5 +10,8 @@ export default function defaultConfig () {
     FormatOption: {
       AllowStructOneLine: true,
     },
+    wikiYAML: {
+      layout: 'page'
+    }
   }
 }

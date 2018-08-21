@@ -3,7 +3,7 @@ import program from 'commander'
 import { existsSync, removeSync, writeFileSync } from 'fs-extra'
 import { resolve } from 'path'
 import { exit } from 'shelljs'
-import { toYaml } from 'toYaml'
+import yaml from 'js-yaml'
 import { check } from './commands/check'
 import defaultConfig from './constants/defaultConfig'
 import makeConfig from './makeConfig'
@@ -76,7 +76,7 @@ program
     const setting = cmd.setting || defaultSettingFile
     if (existsSync(setting)) throw `${dir} : ${setting} already exists`
     const cfgObj = cmd.default ? defaultConfig() : {}
-    writeFileSync(resolve(process.cwd(), setting), toYaml(cfgObj))
+    writeFileSync(resolve(process.cwd(), setting), yaml.safeDump(cfgObj))
   })
 
 program

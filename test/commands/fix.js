@@ -23,7 +23,7 @@ test.afterEach(t => {
 
 test('fixしたらcheckが通る', async t => {
   const project = {
-    wikis: JSON.parse(cat('./test/fixtures/expects/wikis.json').stdout),
+    wikis: JSON.parse(cat('./test/fixtures/expects/wikis_transformed.json').stdout),
     libs: JSON.parse(cat('./test/fixtures/expects/libs_transformed.json').stdout),
     templates: JSON.parse(cat('./test/fixtures/expects/templates.json').stdout),
   }

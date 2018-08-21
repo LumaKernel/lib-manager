@@ -27,6 +27,10 @@
     "files": [
       "test/**/*",
       "!**/helpers/**/*.js"
+    ],
+    "sources": [
+      "!tmp/**/*",
+      "!node_modules/**/*"
     ]
   },
   "dependencies": {
@@ -35,7 +39,6 @@
     "fs-extra": "^7.0.0",
     "js-yaml": "^3.12.0",
     "pify": "^4.0.0",
-    "shelljs": "^0.8.2",
-    "toYaml": "^1.0.0"
+    "shelljs": "^0.8.2"
   }
 }
