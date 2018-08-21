@@ -2,7 +2,7 @@
   "name": "libman",
   "version": "1.0.0",
   "description": "the manager for libs",
-  "main": "index.js",
+  "main": "index.mjs",
   "scripts": {
     "test": "ava"
   },
