@@ -41,7 +41,7 @@ export default function build (config, project, one = false) {
   if (one) {
     const printlist = JSON.parse(readFileSync(printlistPath))
     const printed = JSON.parse(readFileSync(printedPath))
-    const {printed: newPrinted, printable} = buildPrintable(printlist, printed, project.libs)
+    const {printed: newPrinted, printable} = buildPrintable(config.printableYAML, printlist, printed, project.libs)
     writeFileSync(resolve(dist, 'printable.md'), printable)
     copy(dist, config.CopyPrintable, 'printable.md')
     writeFileSync(printedPath, JSON.stringify(newPrinted))

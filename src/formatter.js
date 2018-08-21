@@ -1,6 +1,5 @@
 import { exec } from 'child_process'
-import fs from 'fs-extra'
-const { existsSync, mkdirsSync, readFileSync, removeSync, writeFileSync } = fs
+import { existsSync, mkdirsSync, readFileSync, removeSync, writeFileSync } from 'fs-extra';
 import path from 'path'
 import pify from 'pify'
 import makeTemp from './helpers/makeTemp'

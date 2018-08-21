@@ -1,6 +1,7 @@
+import yaml from 'js-yaml'
 import { mdEscape } from '../helpers/escape'
 
-export default function buildPrintable (printlist, printed, libs) {
+export default function buildPrintable (printableYAML, printlist, printed, libs) {
   if (!Array.isArray(printlist)) throw 'printlist must be array'
   const printRaw = []
   printlist.forEach(name => {
@@ -13,6 +14,6 @@ export default function buildPrintable (printlist, printed, libs) {
   })
   return {
     printed,
-    printable: printRaw.join('\n\n')
+    printable: '```\n' + yaml.safeDump(printableYAML) + '\n```\n\n' + printRaw.join('\n\n')
   }
 }

@@ -1,5 +1,5 @@
 import program from 'commander'
-import fs from 'fs-extra'
+import { existsSync, removeSync, writeFileSync } from 'fs-extra'
 import yaml from 'js-yaml'
 import path from 'path'
 import shelljs from 'shelljs'
@@ -12,7 +12,6 @@ import makeConfig from './makeConfig'
 import makeProject from './makers/makeProject'
 const { resolve } = path
 const { exit } = shelljs
-const { existsSync, removeSync, writeFileSync } = fs
 
 const defaultSettingFile = 'libman.yml'
 
@@ -137,14 +136,10 @@ program
 // error on unknown commands
 program.on('command:*', function () {
   console.error('Invalid command: %s\nSee --help for a list of available commands.', program.args.join(' '))
-  process.exit(0)
 })
 
 program.parse(process.argv)
 
 if (!process.argv.slice(2).length) {
-  program.outputHelp((str) => { console.log(str) })
-  process.exit(0)
+  program.help()
 }
-
-export { }
