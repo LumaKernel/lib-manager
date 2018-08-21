@@ -4,7 +4,8 @@
   "description": "the manager for libs",
   "main": "index.mjs",
   "scripts": {
-    "test": "ava"
+    "test": "ava",
+    "start": "babel-node index.mjs"
   },
   "bin": {
     "libman": "index.mjs"
@@ -15,6 +16,7 @@
   "devDependencies": {
     "ava": "^0.25.0",
     "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "eslint": "^5.4.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.14.0",
