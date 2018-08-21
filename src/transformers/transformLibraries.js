@@ -18,6 +18,7 @@ async function dfs (config, libs, templates, key) {
   now.processing = true
   let codes = [now.code, now.refactored, now.enclosed]
   now['import'].forEach(el => {
+    if (!templates[el.name]) throw `template ${el.name} not found`
     codes[1] = codes[1].replace(hash(el.id), `// @import ${el.name}\n${templates[el.name].code}\n// @@`)
   })
   await now.require.forEachAsync(async el => {

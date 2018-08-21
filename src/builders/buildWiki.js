@@ -1,4 +1,4 @@
-import fs from 'fs-extra'
+import fs, { existsSync } from 'fs-extra'
 import moment from 'moment'
 import path from 'path'
 import makeWikiTop from './makeWikiTop'
@@ -18,6 +18,7 @@ export function buildWiki (config, project) {
   const src = resolve(process.cwd(), config.WorkingDir, config.SrcDir)
   const dist = resolve(process.cwd(), config.WorkingDir, config.DistDir)
   const dir = resolve(dist, 'wiki')
+  if (!existsSync(resolve(src, 'top.md'))) throw `top.md not found`
   mkdirsSync(dir)
   const wikiTop = makeWikiTop(
     readFileSync(resolve(src, 'top.md')).toString(),

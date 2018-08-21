@@ -1,4 +1,12 @@
 {
+  "env": {
+    "development": {
+      "sourceMaps": "inline",
+      "plugins": [
+        "source-map-support"
+      ]
+    }
+  },
   "presets": [
     "stage-0",
     [
