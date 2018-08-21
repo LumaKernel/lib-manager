@@ -3,7 +3,7 @@ import { cat } from 'shelljs'
 import build from '../../commands/build'
 import { prepareWorkSpace } from '../helpers/prepareWorkSpace'
 import { resolve } from 'path'
-import { readdirSync, readFileSync } from 'fs-extra'
+import { readdirSync, readFileSync, existsSync } from 'fs-extra'
 
 prepareWorkSpace(test)
 
@@ -52,4 +52,14 @@ test('スニペットをコピーする', async t => {
   const config = t.context.config
   const snippetExp = cat('./test/fixtures/expects/libman.snip').stdout
   t.is(readFileSync(config.CopySnippet).toString(), snippetExp)
+})
+
+test('printlist.md がなくなり， printlist_used.md が新しく作られる', async t => {
+  const config = t.context.config
+  const src = resolve(process.cwd(), config.WorkingDir, config.SrcDir)
+  const printlistPath = resolve(src, 'printlist.json')
+  const printlistUsedPath = resolve(src, 'printlist_used.json')
+
+  t.false(existsSync(printlistPath))
+  t.true(existsSync(printlistUsedPath))
 })

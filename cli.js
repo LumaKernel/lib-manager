@@ -9,6 +9,8 @@ import defaultConfig from './constants/defaultConfig'
 import makeConfig from './makeConfig'
 import makeProject from './makers/makeProject'
 import fix from './transformers/commands/fix'
+import buildInit from './commands/buidInit'
+import build from './commands/build'
 
 const defaultSettingFile = 'libman.yml'
 
@@ -47,11 +49,16 @@ program
 program
   .command('build')
   .usage('[options] <dir>')
+  .option('-i, --init', 'put printlist.json')
   .option('-f, --fix', 'when check is failed, fix and build')
   .action(async (dir, cmd) => {
     const setting = cmd.setting || defaultSettingFile
     const config = makeConfig(dir, setting)
     const project = await makeProject(config)
+    if (cmd.init) {
+      buildInit(config, project)
+      return
+    }
     const changes = check(config, project)
     if (changes.length !== 0) {
       if (cmd.fix) {
@@ -65,6 +72,7 @@ program
       console.console(`passed checking`)
     }
     console.log('building...')
+    build(config, project)
   })
 
 program

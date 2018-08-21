@@ -1,4 +1,4 @@
-import { removeSync, writeFileSync, mkdirsSync, copySync, existsSync, readFileSync, readdirSync } from 'fs-extra'
+import { removeSync, writeFileSync, mkdirsSync, copySync, existsSync, readFileSync, readdirSync, renameSync } from 'fs-extra'
 import { buildWiki } from '../builders/buildWiki'
 import { makeSnippet } from '../builders/buildSnippets'
 import { resolve } from 'path'
@@ -11,6 +11,7 @@ export default function build (config, project) {
   const dist = resolve(process.cwd(), config.WorkingDir, config.DistDir)
 
   const printlistPath = resolve(src, 'printlist.json')
+  const printlistUsedPath = resolve(src, 'printlist_used.json')
   const printedPath = resolve(src, 'printed.json')
 
   if (!existsSync(printlistPath)) {
@@ -40,6 +41,8 @@ export default function build (config, project) {
   writeFileSync(resolve(dist, 'printable.md'), printable)
   copy(dist, config.CopyPrintable, 'printable.md')
   writeFileSync(printedPath, JSON.stringify(newPrinted))
+
+  renameSync(printlistPath, printlistUsedPath)
 }
 
 function check (data, name) {
