@@ -6,6 +6,9 @@
   "scripts": {
     "test": "ava"
   },
+  "bin": {
+    "libman": "index.mjs"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
