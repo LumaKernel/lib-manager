@@ -1,18 +1,16 @@
+import { existsSync, readFileSync } from 'fs-extra'
 import yaml from 'js-yaml'
-import path from 'path'
-import shelljs from 'shelljs'
-const {cat, test} = shelljs
-const {resolve} = path
+import { resolve } from 'path'
 
 export default function makeWiki (config, nowdir = null, path = '') {
   if (nowdir === null) nowdir = resolve(process.cwd(), config.WorkingDir, config.SrcDir)
   const wiki = {}
   const wikiYAML = resolve(nowdir, 'wiki.yml')
-  if (!test('-e', wikiYAML)) return false
+  if (!existsSync(wikiYAML)) return false
   const wikiData = {
     type: 'dir',
     order: [],
-    ...yaml.safeLoad(cat(wikiYAML).stdout),
+    ...yaml.safeLoad(readFileSync(wikiYAML).toString()),
   }
   wiki.type = wikiData.type
   if (wikiData.title) wiki.title = wikiData.title
@@ -20,18 +18,18 @@ export default function makeWiki (config, nowdir = null, path = '') {
   wiki.path = path
   if (Array.isArray(typeof wikiData.orde)) throw `${nowdir} : order must be array`
   const wikipage = resolve(nowdir, 'wiki.md')
-  if (test('-e', wikipage)) wiki.wiki = cat(wikipage).stdout
+  if (existsSync(wikipage)) wiki.wiki = readFileSync(wikipage).toString()
   const child = []
   wikiData.order.forEach(el => {
     const mdfile = resolve(nowdir, el + '.md')
     const newdir = resolve(nowdir, el)
-    if (test('-e', mdfile)) {
+    if (existsSync(mdfile)) {
       child.push({
         path: el,
         type: 'lib',
-        wiki: cat(mdfile).stdout,
+        wiki: readFileSync(mdfile).toString(),
       })
-    } else if (test('-e', newdir)) {
+    } else if (existsSync(newdir)) {
       const d = makeWiki(config, newdir, el)
       if (d) child.push(d)
     } else {

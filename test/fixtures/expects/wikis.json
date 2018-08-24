@@ -23,7 +23,7 @@
         {
           "path": "baz",
           "type": "lib",
-          "wiki": "ばずりぶ\n\n// @ Baz Lib\n"
+          "wiki": "---\ntitle: Baz World\n---\nばずりぶ\n\n// @ Baz Lib\n"
         },
         {
           "type": "one",

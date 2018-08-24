@@ -37,7 +37,7 @@
       "test/**/*",
       "!**/helpers/**/*.js"
     ],
-    "sources": [
+    "source": [
       "!tmp/**/*",
       "!node_modules/**/*"
     ]

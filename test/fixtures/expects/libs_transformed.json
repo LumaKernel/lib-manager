@@ -70,7 +70,7 @@
     "namespace": "fuga",
     "filename": "baz.cpp",
     "code": "/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///",
-    "refactored": "// @name Baz Lib\n// @title Baz World\n// @id baz-world\n/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///",
+    "refactored": "// @name Baz Lib\n// @id baz-world\n/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///",
     "enclosed": "/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///",
     "data": [
       [
@@ -78,15 +78,11 @@
         "Baz Lib"
       ],
       [
-        "title",
-        "Baz World"
-      ],
-      [
         "id",
         "baz-world"
       ]
     ],
-    "old": "// @name Baz Lib\n// @title Baz World\n// @id baz-world\n/// --- Baz Lib {{{ ///\nstruct Ex {\n};\n\n/// }}}--- ///",
+    "old": "// @name Baz Lib\n// @id baz-world\n/// --- Baz Lib {{{ ///\nstruct Ex {\n};\n\n/// }}}--- ///",
     "require": [],
     "import": [],
     "finished": true,

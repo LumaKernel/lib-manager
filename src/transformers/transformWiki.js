@@ -4,15 +4,19 @@ import { mdEscape } from '../helpers/escape'
 const libRegExp = name => new RegExp(
   String.raw`(?<=^|\n)// @ ${name}(?=\n|$)`, 'g')
 
+const mdYAMlRegExp = /^---\n(.*?)\n---(?:\n|$)/
+
 // dfs
 /**
  * 破壊する
  */
 export default function transformWiki (wikiYAML, wikis, libs, paths = []) {
   const namespace = paths.filter(e => e).join('/')
-  const lib = Object.values(libs)
+  let lib = Object.values(libs)
     .filter(el => el.namespace === namespace &&
-    el.filename === `${wikis.path}.cpp`)[0]
+    el.filename === `${wikis.path}.cpp`)
+  if (lib && lib.length === 1) lib = lib[0]
+  else lib = null
   paths = [...paths, wikis.path]
   const permalink = wikis.permalink || paths.filter(e => e).join('/')
   if (wikis.wiki) {
@@ -28,10 +32,17 @@ export default function transformWiki (wikiYAML, wikis, libs, paths = []) {
   }
   wikis.title = wikis.title || wikis.path
   wikis.permalink = permalink
-  const data = {
+  let data = {
     ...wikiYAML,
     permalink,
     title: wikis.title
+  }
+  if (wikis.wiki && wikis.wiki.match(mdYAMlRegExp)) {
+    data = {
+      ...data,
+      ...yaml.safeLoad(wikis.wiki.match(mdYAMlRegExp)[1])
+    }
+    wikis.wiki = wikis.wiki.replace(mdYAMlRegExp, '')
   }
   if (wikis.wiki) wikis.wiki = `---\n${yaml.safeDump(data)}\n---\n\n${wikis.wiki}`
 

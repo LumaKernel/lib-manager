@@ -26,7 +26,7 @@
         {
           "path": "baz",
           "type": "lib",
-          "wiki": "---\nlayout: page\npermalink: fuga/baz\ntitle: baz\n\n---\n\nばずりぶ\n\n```cpp\n/// --- Baz Lib {{\"{{\"}}{ ///\nstruct Ex {};\n\n/// }}}--- ///\n```\n",
+          "wiki": "---\nlayout: page\npermalink: fuga/baz\ntitle: Baz World\n\n---\n\nばずりぶ\n\n```cpp\n/// --- Baz Lib {{\"{{\"}}{ ///\nstruct Ex {};\n\n/// }}}--- ///\n```\n",
           "title": "baz",
           "permalink": "fuga/baz"
         },
