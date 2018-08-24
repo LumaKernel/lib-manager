@@ -13,10 +13,12 @@ import makeProject from './makers/makeProject'
 const { resolve } = path
 const { exit } = shelljs
 
+const version = require('../package.json').version
+
 const defaultSettingFile = 'libman.yml'
 
 program
-  .version('0.1.0', '-v, --version')
+  .version(version, '-v, --version')
   .option('-s, --setting', 'YAML setting file path')
 
 program

@@ -7,6 +7,7 @@
       ]
     }
   },
+  "plugins": ["inline-package-json"],
   "presets": [
     [
       "@babel/preset-env",
