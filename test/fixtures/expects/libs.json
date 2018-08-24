@@ -95,8 +95,8 @@
   "FugaBar": {
     "namespace": "fuga/foobar",
     "filename": "fuga-bar.cpp",
-    "code": "/// --- FugaBar {{{ ///\n###1###\n\n// and some more\n\n/// }}}--- ///",
-    "refactored": "/// --- FugaBar {{{ ///\n// @name FugaBar\n###1###\n\n// and some more\n\n/// }}}--- ///",
+    "code": "###1###\n\n// and some more\n",
+    "refactored": "// @name FugaBar\n###1###\n\n// and some more\n",
     "enclosed": "/// --- FugaBar {{{ ///\n###1###\n\n// and some more\n\n/// }}}--- ///",
     "data": [
       [
@@ -119,16 +119,20 @@
   "FugaFoo": {
     "namespace": "fuga/foobar",
     "filename": "fuga-foo.cpp",
-    "code": "/// --- FugaFoo {{{ ///\n// NOTE : nothing\n###1###\n\n// and some more\n\n/// }}}--- ///",
-    "refactored": "/// --- FugaFoo {{{ ///\n// @name FugaFoo\n// NOTE : nothing\n###1###\n\n// and some more\n\n/// }}}--- ///",
+    "code": "// NOTE : nothing\n###1###\n\n// and some more\n",
+    "refactored": "// @name FugaFoo\n// @title Fuga(Foo)\n// NOTE : nothing\n###1###\n\n// and some more\n",
     "enclosed": "/// --- FugaFoo {{{ ///\n// NOTE : nothing\n###1###\n\n// and some more\n\n/// }}}--- ///",
     "data": [
       [
         "name",
         "FugaFoo"
+      ],
+      [
+        "title",
+        "Fuga(Foo)"
       ]
     ],
-    "old": "// @name FugaFoo\n// NOTE : nothing\n/// --- Baz Lib {{{ ///\nstruct Ex {\n};\n\n/// }}}--- ///\n\n// and some more\n",
+    "old": "// @name FugaFoo\n// @title Fuga(Foo)\n// NOTE : nothing\n/// --- Baz Lib {{{ ///\nstruct Ex {\n};\n\n/// }}}--- ///\n\n// and some more\n",
     "require": [
       {
         "old": "/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///",
@@ -140,11 +144,51 @@
     "finished": false,
     "processing": false
   },
+  "FugaFoo-utility": {
+    "namespace": "fuga/foobar",
+    "filename": "fuga-foo.cpp",
+    "code": "// WARN : utility\nint func(int x) { return x + x; }\n",
+    "refactored": "// @snippet foofoo\n// WARN : utility\nint func(int x) { return x + x; }\n",
+    "enclosed": "/// --- FugaFoo-utility {{{ ///\n// WARN : utility\nint func(int x) { return x + x; }\n\n/// }}}--- ///",
+    "data": [
+      [
+        "snippet",
+        "foofoo"
+      ]
+    ],
+    "old": "// @new FugaFoo-utility\n// @snippet foofoo\n// WARN : utility\nint func(int x) {\n  return x + x;\n}\n",
+    "require": [],
+    "import": [],
+    "finished": false,
+    "processing": false
+  },
+  "FugaFoo-expanded": {
+    "namespace": "fuga/foobar",
+    "filename": "fuga-foo.cpp",
+    "code": "// @new\nint abc(int x) { return x * x; }",
+    "refactored": "// @new\n// @name FugaFoo-expanded\n// @snippet abc\nint abc(int x) { return x * x; }",
+    "enclosed": "/// --- FugaFoo-expanded {{{ ///\n// @new\nint abc(int x) { return x * x; }\n/// }}}--- ///",
+    "data": [
+      [
+        "name",
+        "FugaFoo-expanded"
+      ],
+      [
+        "snippet",
+        "abc"
+      ]
+    ],
+    "old": "// @new\n// @name FugaFoo-expanded\n// @snippet abc\nint abc(int x) {\n  return x * x;\n}",
+    "require": [],
+    "import": [],
+    "finished": false,
+    "processing": false
+  },
   "Bar Lib": {
     "namespace": "hoge",
     "filename": "bar.cpp",
-    "code": "/// --- Bar Lib {{{ ///\n\nconst int HEY = \"hello\";\n/// }}}--- ///",
-    "refactored": "/// --- Bar Lib {{{ ///\n###1###\n// @snippet wow\n// @options word\n// @title すごいbar!\n// @name Bar Lib\nconst int HEY = \"hello\";\n/// }}}--- ///",
+    "code": "\nconst int HEY = \"hello\";",
+    "refactored": "###1###\n// @snippet wow\n// @options word\n// @title すごいbar!\n// @name Bar Lib\nconst int HEY = \"hello\";",
     "enclosed": "/// --- Bar Lib {{{ ///\n\nconst int HEY = \"hello\";\n/// }}}--- ///",
     "data": [
       [

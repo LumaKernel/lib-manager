@@ -15,11 +15,11 @@ export function fix (config, project) {
 export function applyLibraries (config, libs, apply = false) {
   const src = resolve(process.cwd(), config.WorkingDir, config.SrcDir)
   const changes = []
-  Object.values(libs).forEach(el => {
-    if (el.old === el.refactored) return
-    const path = resolve(src, ...el.namespace.split('/'), el.filename)
-    changes.push([...el.namespace.split('/'), el.filename].filter(e => e).join('/'))
-    if (apply) writeFileSync(path, el.refactored)
+  Object.values(libs).forEach(lib => {
+    if (lib.old === lib.refactored) return
+    const path = resolve(src, ...lib.namespace.split('/'), lib.filename)
+    changes.push([...lib.namespace.split('/'), lib.filename].filter(e => e).join('/'))
+    if (apply) writeFileSync(path, lib.refactored)
   })
   return changes
 }

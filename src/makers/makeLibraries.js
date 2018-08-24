@@ -1,15 +1,15 @@
-import path from 'path'
-import shelljs from 'shelljs'
+import 'array-foreach-async'
+import { readFileSync } from 'fs-extra'
+import { resolve } from 'path'
 import getFileStructure from './getFileStructure'
 import { makeLib } from './makeLib'
-import none from 'array-foreach-async'
-const { resolve } = path
-const { cat } = shelljs
-none // eslint-disable-line
+
+const newRegExp = /\n(?=\/\/ @new(?: .+)?)/
 
 export default async function makeLibraries (config) {
   const {main} = getFileStructure(config)
   const libs = {}
+  const files = []
   //
   const libFiles = main.filter(el => !el[1].match(/_.*$/))
   // library files
@@ -17,9 +17,18 @@ export default async function makeLibraries (config) {
     const namespace = namespaceList.join('/')
     const path = resolve(process.cwd(),
       config.WorkingDir, config.SrcDir, namespace, filename)
-    const old = cat(path).stdout
-    const {name, data} = await makeLib(old, namespace, filename, config)
-    libs[name] = data
+    const raw = readFileSync(path).toString()
+    const olds = raw.split(newRegExp)
+    const file = {namespace, filename, data: []}
+    await olds.forEachAsync(async old => {
+      const {name, data} = await makeLib(old, namespace, filename, config)
+      if (libs[name]) throw `name "${name}" duplicates`
+      libs[name] = data
+      file.data.push(name)
+    })
+    files.push(file)
   })
-  return libs
+  return {
+    libs, files
+  }
 }

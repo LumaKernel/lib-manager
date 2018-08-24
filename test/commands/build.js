@@ -28,7 +28,7 @@ test('printed が新しく作られる', async t => {
   const src = resolve(process.cwd(), config.WorkingDir, config.SrcDir)
   const printedexp = JSON.parse(cat('./test/fixtures/expects/printed.json').stdout)
   const printed = JSON.parse(cat(resolve(src, 'printed.json')).stdout)
-
+  t.log(JSON.stringify(printed))
   t.deepEqual(printed, printedexp)
 })
 
@@ -52,6 +52,7 @@ test('copywiki に指定したディレクトリにwikiがコピーされ，古�
 test('スニペットをコピーする', async t => {
   const config = t.context.config
   const snippetExp = cat('./test/fixtures/expects/libman.snip').stdout
+  // console.log(readFileSync(config.CopySnippet).toString())
   t.is(readFileSync(config.CopySnippet).toString(), snippetExp)
 })
 

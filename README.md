@@ -1,4 +1,1 @@
-TODO
-
-* // @type oneを// @beginと// @endをたよりに読む
-* wrapがなくてもわざわざ囲まない
+TODO 書く

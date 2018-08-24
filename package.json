@@ -15,11 +15,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.0.0-rc.2",
+    "@babel/preset-env": "^7.0.0-rc.2",
     "ava": "^0.25.0",
-    "babel-cli": "^6.26.0",
     "babel-plugin-source-map-support": "^2.0.1",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-stage-0": "^6.24.1",
     "eslint": "^5.4.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.14.0",

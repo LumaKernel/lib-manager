@@ -6,8 +6,10 @@ export function makeSnippet (config, libs) {
       return snippet.length
     }).map(key => {
       const el = libs[key]
-      const settings = {};
-      ['snippet', 'option'].forEach(opt => {
+      const settings = {
+        options: 'head'
+      };
+      ['snippet', 'options'].forEach(opt => {
         const data = el.data.filter(el => el[0] === opt)[0]
         if (data) settings[opt] = data[1]
       })
@@ -22,6 +24,7 @@ export function makeSnippet (config, libs) {
       if (alias.length) settings.alias = alias.join(' ')
       return (
         Object.entries(settings)
+          .sort(([a], [b]) => -(a === 'snippet') + (b === 'snippet'))
           .map(([key, value]) => key + ' ' + value)
           .join('\n')
       ) + '\n' + code

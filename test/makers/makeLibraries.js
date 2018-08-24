@@ -1,13 +1,16 @@
 import test from 'ava'
-import { cat } from 'shelljs'
+import {readFileSync} from 'fs-extra'
 import makeLibraries from '../../src/makers/makeLibraries'
 import { prepareWorkSpace } from '../helpers/prepareWorkSpace'
 
 prepareWorkSpace(test)
 
 test(async t => {
-  const exp = JSON.parse(cat('./test/fixtures/expects/libs.json').stdout)
-  const libs = await makeLibraries(t.context.config)
-  // t.log(JSON.stringify(libs))
-  t.deepEqual(libs, exp)
+  const libsExp = JSON.parse(readFileSync('./test/fixtures/expects/libs.json').toString())
+  const fielsExp = JSON.parse(readFileSync('./test/fixtures/expects/files.json').toString())
+  const {libs, files} = await makeLibraries(t.context.config)
+  t.log(JSON.stringify(libs))
+  t.log(JSON.stringify(files))
+  t.deepEqual(libs, libsExp)
+  t.deepEqual(files, fielsExp)
 })

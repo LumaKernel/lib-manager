@@ -13,5 +13,6 @@ test(async t => {
     templates: JSON.parse(cat('./test/fixtures/expects/templates.json').stdout),
   }
   const changes = check(t.context.config, project)
+  t.log(JSON.stringify(changes))
   t.deepEqual(changes, exp)
 })

@@ -1,0 +1,39 @@
+[
+  {
+    "namespace": "",
+    "filename": "foo.cpp",
+    "data": [
+      "Foo Lib"
+    ]
+  },
+  {
+    "namespace": "fuga",
+    "filename": "baz.cpp",
+    "data": [
+      "Baz Lib"
+    ]
+  },
+  {
+    "namespace": "fuga/foobar",
+    "filename": "fuga-bar.cpp",
+    "data": [
+      "FugaBar"
+    ]
+  },
+  {
+    "namespace": "fuga/foobar",
+    "filename": "fuga-foo.cpp",
+    "data": [
+      "FugaFoo",
+      "FugaFoo-utility",
+      "FugaFoo-expanded"
+    ]
+  },
+  {
+    "namespace": "hoge",
+    "filename": "bar.cpp",
+    "data": [
+      "Bar Lib"
+    ]
+  }
+]

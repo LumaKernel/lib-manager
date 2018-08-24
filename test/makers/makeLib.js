@@ -8,9 +8,13 @@ test(async t => {
   t.plan(1)
   const old = ''
   try { // TODO : use thorwsAsync
-    await makeLib(old, '', 'test.cpp', t.context.config)
+    await makeLib(old, '', 'x.cpp', t.context.config)
   } catch (error) {
-    t.is(error, './test.cpp : no name')
+    if (typeof error === 'string') {
+      t.is(error, ' / x.cpp : no name')
+    } else {
+      throw error
+    }
   }
 })
 
@@ -22,9 +26,13 @@ test(async t => {
 /// }}}--- ///
 `
   try { // TODO : use thorwsAsync
-    await makeLib(old, '', 'test.cpp', t.context.config)
+    await makeLib(old, 'abc', 'y.cpp', t.context.config)
   } catch (error) {
-    t.is(error, 'test LIB : cannot include unit lib end')
+    if (typeof error === 'string') {
+      t.is(error, 'abc / y.cpp : test LIB : cannot include unit lib end')
+    } else {
+      throw error
+    }
   }
 })
 
@@ -42,8 +50,12 @@ b;
 /// }}}--- ///
 `
   try { // TODO : use thorwsAsync
-    await makeLib(old, '', 'test.cpp', t.context.config)
+    await makeLib(old, 'c', 'z.cpp', t.context.config)
   } catch (error) {
-    t.is(error, 'TEST my LIB : cannot handle 2 or more encsolures "/// ---..."')
+    if (typeof error === 'string') {
+      t.is(error, 'c / z.cpp : TEST my LIB : cannot handle 2 or more enclosures "/// ---..."')
+    } else {
+      throw error
+    }
   }
 })
