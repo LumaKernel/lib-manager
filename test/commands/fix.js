@@ -1,37 +1,28 @@
 import test from 'ava'
-import { cat, cp, mkdir } from 'shelljs'
 import { check } from '../../src/commands/check'
 import { fix } from '../../src/commands/fix'
-import defaultConfig from '../../src/constants/defaultConfig'
 import makeProject from '../../src/makers/makeProject'
+import { prepareWorkSpace } from '../helpers/prepareWorkSpace'
+import { readFileSync } from 'fs-extra'
 
-test.beforeEach(t => {
-  const work = './tmp/' + Math.random().toString(36).slice(-8)
-  t.context.work = work
-  mkdir('-p', './tmp')
-  cp('-R', './test/fixtures/workspace', work)
-  t.context.config = {
-    ...defaultConfig(),
-    WorkingDir: work
-  }
-})
-
-test.afterEach(t => {
-  // よく動かないf
-  // rm(t.context.work)
-})
+prepareWorkSpace(test)
 
 test('fixしたらcheckが通る', async t => {
+  // t.context.save = 1
   const project = {
-    wikis: JSON.parse(cat('./test/fixtures/expects/wikis_transformed.json').stdout),
-    libs: JSON.parse(cat('./test/fixtures/expects/libs_transformed.json').stdout),
-    templates: JSON.parse(cat('./test/fixtures/expects/templates.json').stdout),
+    wikis: JSON.parse(readFileSync('./test/fixtures/expects/wikis_transformed.json').toString()),
+    libs: JSON.parse(readFileSync('./test/fixtures/expects/libs_transformed.json').toString()),
+    files: JSON.parse(readFileSync('./test/fixtures/expects/files.json').toString()),
+    templates: JSON.parse(readFileSync('./test/fixtures/expects/templates.json').toString()),
   }
+  const exp = JSON.parse(readFileSync('./test/fixtures/expects/project_fixed.json').toString())
   fix(t.context.config, project)
-  const nproject = await makeProject(t.context.config)
-  Object.values(nproject.libs).forEach(el => {
+  const fixedProject = await makeProject(t.context.config)
+  t.log(JSON.stringify(fixedProject))
+  t.deepEqual(fixedProject, exp)
+  Object.values(fixedProject.libs).forEach(el => {
     t.is(el.refactored, el.old)
   })
-  const changes = check(t.context.config, nproject)
+  const changes = check(t.context.config, fixedProject)
   t.deepEqual(changes, [])
 })

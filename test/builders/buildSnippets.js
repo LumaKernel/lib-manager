@@ -9,5 +9,6 @@ test(async t => {
   const libs = JSON.parse(cat('./test/fixtures/expects/libs_transformed.json').stdout)
   const exp = cat('./test/fixtures/expects/libman.snip').stdout
   const snippet = makeSnippet(t.context.config, libs)
+  // console.log(snippet)
   t.is(snippet, exp)
 })

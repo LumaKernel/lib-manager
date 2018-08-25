@@ -1,0 +1,297 @@
+{
+  "wikis": {
+    "type": "dir",
+    "path": "",
+    "child": [
+      {
+        "type": "dir",
+        "title": "ねこ",
+        "path": "hoge",
+        "child": [
+          {
+            "path": "bar",
+            "type": "lib",
+            "wiki": "---\nlayout: page\npermalink: hoge/bar\ntitle: bar\n\n---\n\nBarを紹介\n\nこれはbaz\n\n```cpp\n/// --- Baz Lib {{\"{{\"}}{ ///\nstruct Ex {};\n\n/// }}}--- ///\n```\n\nそしてこれがBar\n\n```cpp\nconst int HEY = \"hello\";\n```",
+            "title": "bar",
+            "permalink": "hoge/bar"
+          }
+        ],
+        "permalink": "hoge"
+      },
+      {
+        "type": "dir",
+        "title": "犬のはなし",
+        "path": "fuga",
+        "wiki": "---\nlayout: page\npermalink: fuga\ntitle: 犬のはなし\n\n---\n\nおおまかな解説ページだよ\n",
+        "child": [
+          {
+            "path": "baz",
+            "type": "lib",
+            "wiki": "---\nlayout: page\npermalink: fuga/baz\ntitle: Baz World\n\n---\n\nばずりぶ\n\n```cpp\n/// --- Baz Lib {{\"{{\"}}{ ///\nstruct Ex {};\n\n/// }}}--- ///\n```\n",
+            "title": "baz",
+            "permalink": "fuga/baz"
+          },
+          {
+            "type": "one",
+            "title": "Fuga発展",
+            "permalink": "fuga-ex",
+            "path": "foobar",
+            "wiki": "---\nlayout: page\npermalink: fuga-ex\ntitle: Fuga発展\n\n---\n\nFugaを発展させます．\n\n### fuga-foo\n\n$1 + 1 = 2$\n\n```cpp\n// NOTE : nothing\n/// --- Baz Lib {{\"{{\"}}{ ///\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n```\n\n### fuga-bar\n\n```cpp\n/// --- Baz Lib {{\"{{\"}}{ ///\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n```\n\n\n",
+            "child": []
+          }
+        ],
+        "permalink": "fuga"
+      }
+    ],
+    "title": "",
+    "permalink": ""
+  },
+  "libs": {
+    "Foo Lib": {
+      "name": "Foo Lib",
+      "namespace": "",
+      "filename": "foo.cpp",
+      "code": "/// --- Foo Lib {{{ ///\nnyan;\n{\n  /// --- Bar Lib {{{ ///\n\n  const int HEY = \"hello\";\n  /// }}}--- ///\n}\n/// }}}--- ///\n\n/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///",
+      "refactored": "// @import header\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n\n// @@\n// @name Foo Lib\n// @snippet foo\n// @alias heyhey\n// @alias ff bar_next\n// @verify-name string\n// @verify-url URL\n// @verify-solution URL\n// @verify-todo-name string\n// @verify-todo-url problem-URL\n\n/// --- Foo Lib {{{ ///\nnyan;\n{\n  /// --- Bar Lib {{{ ///\n\n  const int HEY = \"hello\";\n  /// }}}--- ///\n}\n/// }}}--- ///\n\n/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///\n",
+      "enclosed": "/// --- Foo Lib {{{ ///\nnyan;\n{\n  /// --- Bar Lib {{{ ///\n\n  const int HEY = \"hello\";\n  /// }}}--- ///\n}\n/// }}}--- ///",
+      "data": [
+        [
+          "snippet",
+          "foo"
+        ],
+        [
+          "alias",
+          "heyhey"
+        ],
+        [
+          "alias",
+          "ff bar_next"
+        ],
+        [
+          "verify-name",
+          "string"
+        ],
+        [
+          "verify-url",
+          "URL"
+        ],
+        [
+          "verify-solution",
+          "URL"
+        ],
+        [
+          "verify-todo-name",
+          "string"
+        ],
+        [
+          "verify-todo-url",
+          "problem-URL"
+        ]
+      ],
+      "old": "// @import header\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n\n// @@\n// @name Foo Lib\n// @snippet foo\n// @alias heyhey\n// @alias ff bar_next\n// @verify-name string\n// @verify-url URL\n// @verify-solution URL\n// @verify-todo-name string\n// @verify-todo-url problem-URL\n\n/// --- Foo Lib {{{ ///\nnyan;\n{\n  /// --- Bar Lib {{{ ///\n\n  const int HEY = \"hello\";\n  /// }}}--- ///\n}\n/// }}}--- ///\n\n/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///\n",
+      "require": [
+        {
+          "old": "  /// --- Bar Lib {{{ ///\n\n  const int HEY = \"hello\";\n  /// }}}--- ///",
+          "name": "Bar Lib",
+          "id": 1
+        },
+        {
+          "old": "/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///",
+          "name": "Baz Lib",
+          "id": 2
+        }
+      ],
+      "import": [
+        {
+          "name": "header",
+          "old": "#include <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n",
+          "id": 3
+        }
+      ],
+      "finished": true,
+      "processing": true
+    },
+    "Baz Lib": {
+      "name": "Baz Lib",
+      "namespace": "fuga",
+      "filename": "baz.cpp",
+      "code": "/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///",
+      "refactored": "// @name Baz Lib\n// @id baz-world\n/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///",
+      "enclosed": "/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///",
+      "data": [
+        [
+          "id",
+          "baz-world"
+        ]
+      ],
+      "old": "// @name Baz Lib\n// @id baz-world\n/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///",
+      "require": [],
+      "import": [],
+      "finished": true,
+      "processing": true
+    },
+    "FugaBar": {
+      "name": "FugaBar",
+      "namespace": "fuga/foobar",
+      "filename": "fuga-bar.cpp",
+      "code": "/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more",
+      "refactored": "// @name FugaBar\n/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n",
+      "enclosed": "/// --- FugaBar {{{ ///\n/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n\n/// }}}--- ///",
+      "data": [],
+      "old": "// @name FugaBar\n/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n",
+      "require": [
+        {
+          "old": "/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///",
+          "name": "Baz Lib",
+          "id": 1
+        }
+      ],
+      "import": [],
+      "finished": true,
+      "processing": true
+    },
+    "FugaFoo": {
+      "name": "FugaFoo",
+      "namespace": "fuga/foobar",
+      "filename": "fuga-foo.cpp",
+      "code": "// NOTE : nothing\n/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more",
+      "refactored": "// @ FugaFoo\n// @title Fuga(Foo)\n// NOTE : nothing\n/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n",
+      "enclosed": "/// --- FugaFoo {{{ ///\n// NOTE : nothing\n/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n\n/// }}}--- ///",
+      "data": [
+        [
+          "title",
+          "Fuga(Foo)"
+        ]
+      ],
+      "old": "// @ FugaFoo\n// @title Fuga(Foo)\n// NOTE : nothing\n/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n",
+      "require": [
+        {
+          "old": "/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///",
+          "name": "Baz Lib",
+          "id": 1
+        }
+      ],
+      "import": [],
+      "finished": true,
+      "processing": true
+    },
+    "FugaFoo-utility": {
+      "name": "FugaFoo-utility",
+      "namespace": "fuga/foobar",
+      "filename": "fuga-foo.cpp",
+      "code": "// WARN : utility\nint func(int x) { return x + x; }",
+      "refactored": "// @new FugaFoo-utility\n// @snippet foofoo\n// WARN : utility\nint func(int x) { return x + x; }\n",
+      "enclosed": "/// --- FugaFoo-utility {{{ ///\n// WARN : utility\nint func(int x) { return x + x; }\n\n/// }}}--- ///",
+      "data": [
+        [
+          "snippet",
+          "foofoo"
+        ]
+      ],
+      "old": "// @new FugaFoo-utility\n// @snippet foofoo\n// WARN : utility\nint func(int x) { return x + x; }\n",
+      "require": [],
+      "import": [],
+      "finished": true,
+      "processing": true
+    },
+    "FugaFoo-expanded": {
+      "name": "FugaFoo-expanded",
+      "namespace": "fuga/foobar",
+      "filename": "fuga-foo.cpp",
+      "code": "int abc(int x) { return x * x; }",
+      "refactored": "// @new\n// @name FugaFoo-expanded\n// @snippet abc\nint abc(int x) { return x * x; }",
+      "enclosed": "/// --- FugaFoo-expanded {{{ ///\nint abc(int x) { return x * x; }\n/// }}}--- ///",
+      "data": [
+        [
+          "snippet",
+          "abc"
+        ]
+      ],
+      "old": "// @new\n// @name FugaFoo-expanded\n// @snippet abc\nint abc(int x) { return x * x; }",
+      "require": [],
+      "import": [],
+      "finished": true,
+      "processing": true
+    },
+    "Bar Lib": {
+      "name": "Bar Lib",
+      "namespace": "hoge",
+      "filename": "bar.cpp",
+      "code": "const int HEY = \"hello\";",
+      "refactored": "// @import header\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n\n// @@\n// @snippet wow\n// @options word\n// @title すごいbar!\n// @name Bar Lib\nconst int HEY = \"hello\";",
+      "enclosed": "/// --- Bar Lib {{{ ///\n\nconst int HEY = \"hello\";\n/// }}}--- ///",
+      "data": [
+        [
+          "snippet",
+          "wow"
+        ],
+        [
+          "options",
+          "word"
+        ],
+        [
+          "title",
+          "すごいbar!"
+        ]
+      ],
+      "old": "// @import header\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n\n// @@\n// @snippet wow\n// @options word\n// @title すごいbar!\n// @name Bar Lib\nconst int HEY = \"hello\";",
+      "require": [],
+      "import": [
+        {
+          "name": "header",
+          "old": "#include <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n",
+          "id": 1
+        }
+      ],
+      "finished": true,
+      "processing": true
+    }
+  },
+  "files": [
+    {
+      "namespace": "",
+      "filename": "foo.cpp",
+      "data": [
+        "Foo Lib"
+      ]
+    },
+    {
+      "namespace": "fuga",
+      "filename": "baz.cpp",
+      "data": [
+        "Baz Lib"
+      ]
+    },
+    {
+      "namespace": "fuga/foobar",
+      "filename": "fuga-bar.cpp",
+      "data": [
+        "FugaBar"
+      ]
+    },
+    {
+      "namespace": "fuga/foobar",
+      "filename": "fuga-foo.cpp",
+      "data": [
+        "FugaFoo",
+        "FugaFoo-utility",
+        "FugaFoo-expanded"
+      ]
+    },
+    {
+      "namespace": "hoge",
+      "filename": "bar.cpp",
+      "data": [
+        "Bar Lib"
+      ]
+    }
+  ],
+  "templates": {
+    "header": {
+      "old": "#include <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n",
+      "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n",
+      "namespace": "",
+      "filename": "_header.cpp"
+    }
+  }
+}

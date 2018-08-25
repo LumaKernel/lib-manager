@@ -1,4 +1,4 @@
-// @name FugaFoo
+// @ FugaFoo
 // @title Fuga(Foo)
 // NOTE : nothing
 /// --- Baz Lib {{{ ///

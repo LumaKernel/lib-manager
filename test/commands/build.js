@@ -1,7 +1,6 @@
 import test from 'ava'
 import { existsSync, readdirSync, readFileSync } from 'fs-extra'
 import { resolve } from 'path'
-import { cat } from 'shelljs'
 import build from '../../src/commands/build'
 import { prepareWorkSpace } from '../helpers/prepareWorkSpace'
 
@@ -9,9 +8,10 @@ prepareWorkSpace(test)
 
 test.beforeEach(t => {
   const project = {
-    wikis: JSON.parse(cat('./test/fixtures/expects/wikis_transformed.json').stdout),
-    libs: JSON.parse(cat('./test/fixtures/expects/libs_transformed.json').stdout),
-    templates: JSON.parse(cat('./test/fixtures/expects/templates.json').stdout),
+    wikis: JSON.parse(readFileSync('./test/fixtures/expects/wikis_transformed.json').toString()),
+    libs: JSON.parse(readFileSync('./test/fixtures/expects/libs_transformed.json').toString()),
+    files: JSON.parse(readFileSync('./test/fixtures/expects/files.json').toString()),
+    templates: JSON.parse(readFileSync('./test/fixtures/expects/templates.json').toString()),
   }
   const config = t.context.config
   const work = resolve(process.cwd(), config.WorkingDir)
@@ -26,8 +26,8 @@ test.beforeEach(t => {
 test('printed が新しく作られる', async t => {
   const config = t.context.config
   const src = resolve(process.cwd(), config.WorkingDir, config.SrcDir)
-  const printedexp = JSON.parse(cat('./test/fixtures/expects/printed.json').stdout)
-  const printed = JSON.parse(cat(resolve(src, 'printed.json')).stdout)
+  const printedexp = JSON.parse(readFileSync('./test/fixtures/expects/printed.json').toString())
+  const printed = JSON.parse(readFileSync(resolve(src, 'printed.json')).toString())
   t.log(JSON.stringify(printed))
   t.deepEqual(printed, printedexp)
 })
@@ -35,9 +35,9 @@ test('printed が新しく作られる', async t => {
 test('printable.md が出力される', async t => {
   const config = t.context.config
   const dist = resolve(process.cwd(), config.WorkingDir, config.DistDir)
-  const printableExp = cat('./test/fixtures/expects/printable.md').stdout
+  const printableExp = readFileSync('./test/fixtures/expects/printable.md').toString()
   t.true(existsSync(resolve(dist, 'printable.md')))
-  const printable = cat(resolve(dist, 'printable.md')).stdout
+  const printable = readFileSync(resolve(dist, 'printable.md')).toString()
 
   t.is(printable, printableExp)
 })
@@ -51,7 +51,7 @@ test('copywiki に指定したディレクトリにwikiがコピーされ，古�
 
 test('スニペットをコピーする', async t => {
   const config = t.context.config
-  const snippetExp = cat('./test/fixtures/expects/libman.snip').stdout
+  const snippetExp = readFileSync('./test/fixtures/expects/libman.snip').toString()
   // console.log(readFileSync(config.CopySnippet).toString())
   t.is(readFileSync(config.CopySnippet).toString(), snippetExp)
 })

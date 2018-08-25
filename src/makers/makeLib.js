@@ -2,14 +2,15 @@ import { format } from '../formatter'
 import { hash, makeIDMaker } from '../id'
 
 const importRegExp = /(?<=^|\n)\/\/ @import (.+)\n?([\s\S]*?)\n\/\/ @@(?=\n|$)/
-const dataRegExp = /(?<=^|\n)\/\/ @(.+?) (.+)(?:\n|$)/
+const dataRegExp = /(?<=^|\n)\/\/ @(.+?)[ \t]+([^ \n].*)(?:\n|$)/
 // (?<=^|\n)([ \t]*)\/\/\/ --- (?!Foo Lib)(.+?) {{{ \/\/\/[\s\S]*?\n\1\/\/\/ }}}--- \/\/\/(?=\n|$)
 const makeLibraryRegExp = (ex, flags) => new RegExp(
   String.raw`(?<=^|\n)([ \t]*)\/\/\/ --- (?${ex})(.+?) {{{ \/\/\/[\s\S]*?\n\1\/\/\/ }}}--- \/\/\/(?=\n|$)`,
   flags
 )
 const libEndRegExp = /(?:^|\n)[ \t]*\/\/\/ }}}--- \/\/\/(?:\n|&)/
-const newRegExp = /^\/\/ @new(?: (.*))\n/
+const newRegExp = /^\/\/ @new(?:[ \t]+([^ \n].*))?(?:\n|$)/
+const nameRegExp = /^\/\/ @[ \t]+([^ \n].*)(?:\n|$)/
 
 const enclose = (name, code) => `/// --- ${name} {{{ ///\n${code}\n/// }}}--- ///`
 
@@ -19,19 +20,24 @@ export async function makeLib (old, namespace, filename, config) {
   code = await format(code, config)
 
   // データ抽出
-  const data = (code.match(new RegExp(dataRegExp, 'g')) || [])
+  let data = (code.match(new RegExp(dataRegExp, 'g')) || [])
     .map(el => Array.from(el.match(dataRegExp))) // [all, name, data]
     .map(el => (el.shift(), el)) // [name, data]
     .filter(el => el[0] !== 'import')
     .filter(el => el[0] !== 'new')
   const name = (() => {
+    // @new {name}
     const newData = code.match(newRegExp)
     if (newData && newData[1]) return newData[1]
+    // @ {name}
+    const nameData = code.match(nameRegExp)
+    if (nameData && nameData[1]) return nameData[1]
+    // @name {name}
     let name = data.filter(el => el[0] === 'name')[0]
     if (!name) throw `${namespace} / ${filename} : no name`
     return name[1]
   })()
-  code = code.replace(newRegExp, '')
+  data = data.filter(el => el[0] !== 'name')
   //
 
   // ライブラリに関して
@@ -64,6 +70,9 @@ export async function makeLib (old, namespace, filename, config) {
 
   let refactored = code // ここから分岐
 
+  code = code.replace(newRegExp, '')
+  code = code.replace(nameRegExp, '')
+
   code = code.replace(new RegExp(importRegExp, 'g'), '')
   { // import の置き換え
     let i = 0
@@ -87,6 +96,7 @@ export async function makeLib (old, namespace, filename, config) {
   return {
     name,
     data: {
+      name,
       namespace,
       filename,
       code, // スニペット用

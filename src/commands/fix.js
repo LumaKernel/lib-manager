@@ -5,21 +5,28 @@ const { resolve } = path
 
 export function fix (config, project) {
   backup(config)
-  applyLibraries(config, project.libs, true)
+  applyLibraries(config, project.files, project.libs, true)
   applyTemplates(config, project.templates, true)
 }
 
 /**
  * backup before using
  */
-export function applyLibraries (config, libs, apply = false) {
+export function applyLibraries (config, files, libs, apply = false) {
   const src = resolve(process.cwd(), config.WorkingDir, config.SrcDir)
   const changes = []
-  Object.values(libs).forEach(lib => {
-    if (lib.old === lib.refactored) return
-    const path = resolve(src, ...lib.namespace.split('/'), lib.filename)
-    changes.push([...lib.namespace.split('/'), lib.filename].filter(e => e).join('/'))
-    if (apply) writeFileSync(path, lib.refactored)
+  files.forEach(({namespace, filename, data}) => {
+    let changed = false
+    const refacrtored = data
+      .map(name => {
+        if (libs[name].old !== libs[name].refactored) changed = true
+        return libs[name].refactored
+      })
+      .join('\n')
+    if (!changed) return
+    const path = resolve(src, ...namespace.split('/'), filename)
+    changes.push([...namespace.split('/'), filename].filter(e => e).join('/'))
+    if (apply) writeFileSync(path, refacrtored)
   })
   return changes
 }

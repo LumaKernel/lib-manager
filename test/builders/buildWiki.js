@@ -1,7 +1,6 @@
 import test from 'ava'
-import { readdirSync } from 'fs-extra'
+import { readdirSync, readFileSync } from 'fs-extra'
 import { resolve } from 'path'
-import { cat } from 'shelljs'
 import { buildWiki } from '../../src/builders/buildWiki'
 import { prepareWorkSpace } from '../helpers/prepareWorkSpace'
 
@@ -9,9 +8,10 @@ prepareWorkSpace(test)
 
 test('build wiki', async t => {
   const project = {
-    wikis: JSON.parse(cat('./test/fixtures/expects/wikis_transformed.json').stdout),
-    libs: JSON.parse(cat('./test/fixtures/expects/libs_transformed.json').stdout),
-    templates: JSON.parse(cat('./test/fixtures/expects/templates.json').stdout),
+    wikis: JSON.parse(readFileSync('./test/fixtures/expects/wikis_transformed.json').toString()),
+    libs: JSON.parse(readFileSync('./test/fixtures/expects/libs_transformed.json').toString()),
+    files: JSON.parse(readFileSync('./test/fixtures/expects/files.json').toString()),
+    templates: JSON.parse(readFileSync('./test/fixtures/expects/templates.json').toString()),
   }
   const config = t.context.config
   buildWiki(config, project)
