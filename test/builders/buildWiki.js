@@ -18,7 +18,7 @@ test('build wiki', async t => {
   const dist = resolve(process.cwd(), config.WorkingDir, config.DistDir)
   const dir = resolve(dist, 'wiki')
   t.is(readdirSync(dir).length, 5)
-  t.true(readdirSync(dir).includes('top.md'))
+  t.true(readdirSync(dir).includes('index.md'))
   // t.context.save = 1
   // t.fail()
 })
