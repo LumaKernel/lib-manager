@@ -46,7 +46,7 @@ test('copywiki に指定したディレクトリにwikiがコピーされ，古�
   const config = t.context.config
   t.log(readdirSync(config.CopyWiki))
   t.is(readdirSync(config.CopyWiki).length, 5)
-  t.not(readFileSync(config.CopyWiki + '/top.md').toString(), '')
+  t.not(readFileSync(config.CopyWiki + '/index.md').toString(), '')
 })
 
 test('スニペットをコピーする', async t => {

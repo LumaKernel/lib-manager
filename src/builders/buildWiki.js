@@ -18,13 +18,13 @@ export function buildWiki (config, project) {
   const src = resolve(process.cwd(), config.WorkingDir, config.SrcDir)
   const dist = resolve(process.cwd(), config.WorkingDir, config.DistDir)
   const dir = resolve(dist, 'wiki')
-  if (!existsSync(resolve(src, 'top.md'))) throw `top.md not found`
+  if (!existsSync(resolve(src, 'index.md'))) throw `index.md not found`
   mkdirsSync(dir)
   const wikiTop = makeWikiTop(
-    readFileSync(resolve(src, 'top.md')).toString(),
+    readFileSync(resolve(src, 'index.md')).toString(),
     project.wikis,
     moment().format(dateFormat))
-  writeFileSync(resolve(dir, 'top.md'), wikiTop)
+  writeFileSync(resolve(dir, 'index.md'), wikiTop)
   const seqnum = seqnumGen()
   writeWikis(dir, project.wikis, seqnum)
 }

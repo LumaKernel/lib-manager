@@ -10,7 +10,7 @@
         {
           "path": "bar",
           "type": "lib",
-          "wiki": "---\nlayout: page\npermalink: hoge/bar\ntitle: bar\n\n---\n\nBarを紹介\n\nこれはbaz\n\n```cpp\n/// --- Baz Lib {{\"{{\"}}{ ///\nstruct Ex {};\n\n/// }}}--- ///\n```\n\nそしてこれがBar\n\n```cpp\nconst int HEY = \"hello\";\n```",
+          "wiki": "---\nlayout: page\npermalink: hoge/bar\ntitle: bar\n\n---\n\nBarを紹介\n\nこれはbaz\n\n\n```cpp\n/// --- Baz Lib {{\"{{\"}}{ ///\nstruct Ex {};\n\n/// }}}--- ///\n```\n\n\nそしてこれがBar\n\n\n```cpp\nconst int HEY = \"hello\";\n```\n",
           "title": "bar",
           "permalink": "hoge/bar"
         }
@@ -26,7 +26,7 @@
         {
           "path": "baz",
           "type": "lib",
-          "wiki": "---\nlayout: page\npermalink: fuga/baz\ntitle: Baz World\n\n---\n\nばずりぶ\n\n```cpp\n/// --- Baz Lib {{\"{{\"}}{ ///\nstruct Ex {};\n\n/// }}}--- ///\n```\n",
+          "wiki": "---\nlayout: page\npermalink: fuga/baz\ntitle: Baz World\n\n---\n\nばずりぶ\n\n\n```cpp\n/// --- Baz Lib {{\"{{\"}}{ ///\nstruct Ex {};\n\n/// }}}--- ///\n```\n\n",
           "title": "baz",
           "permalink": "fuga/baz"
         },
@@ -35,7 +35,7 @@
           "title": "Fuga発展",
           "permalink": "fuga-ex",
           "path": "foobar",
-          "wiki": "---\nlayout: page\npermalink: fuga-ex\ntitle: Fuga発展\n\n---\n\nFugaを発展させます．\n\n### fuga-foo\n\n$1 + 1 = 2$\n\n```cpp\n// NOTE : nothing\n/// --- Baz Lib {{\"{{\"}}{ ///\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n```\n\n### fuga-bar\n\n```cpp\n/// --- Baz Lib {{\"{{\"}}{ ///\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n```\n\n\n",
+          "wiki": "---\nlayout: page\npermalink: fuga-ex\ntitle: Fuga発展\n\n---\n\nFugaを発展させます．\n\n### fuga-foo\n\n$1 + 1 = 2$\n\n\n```cpp\n// NOTE : nothing\n/// --- Baz Lib {{\"{{\"}}{ ///\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n```\n\n\n### fuga-bar\n\n\n```cpp\n/// --- Baz Lib {{\"{{\"}}{ ///\nstruct Ex {};\n\n/// }}}--- ///\n\n// and some more\n```\n\n\n\n",
           "child": []
         }
       ],
