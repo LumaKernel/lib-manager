@@ -11,7 +11,7 @@ last_update: someday
 
 # [犬のはなし]({{ "fuga" | relative_url }})
 
-* [baz]({{ "fuga/baz" | relative_url }})
+* [Baz World]({{ "fuga/baz" | relative_url }})
 * [Fuga発展]({{ "fuga-ex" | relative_url }})
 
 下側に説明

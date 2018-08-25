@@ -38,10 +38,14 @@ export default function transformWiki (wikiYAML, wikis, libs, paths = []) {
     title: wikis.title
   }
   if (wikis.wiki && wikis.wiki.match(mdYAMlRegExp)) {
+    const innerData = yaml.safeLoad(wikis.wiki.match(mdYAMlRegExp)[1])
     data = {
       ...data,
-      ...yaml.safeLoad(wikis.wiki.match(mdYAMlRegExp)[1])
+      ...innerData,
     }
+    Object.keys(innerData).forEach(key => {
+      wikis[key] = innerData[key]
+    })
     wikis.wiki = wikis.wiki.replace(mdYAMlRegExp, '')
   }
   if (wikis.wiki) wikis.wiki = `---\n${yaml.safeDump(data)}\n---\n\n${wikis.wiki}`

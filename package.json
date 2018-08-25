@@ -1,6 +1,6 @@
 {
   "name": "libman",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "the manager for libs",
   "main": "index.js",
   "scripts": {
