@@ -23,7 +23,7 @@ export default function transformWiki (wikiYAML, wikis, libs, paths = []) {
     Object.entries(libs).forEach(([key, value]) => {
       wikis.wiki = wikis.wiki
         .replace(libRegExp(key),
-          `\n${'```cpp'}\n${mdEscape(value.code)}\n${'```'}\n`)
+          () => `\n${'```cpp'}\n${mdEscape(value.code)}\n${'```'}\n`)
     })
   }
   if (!wikis.title && lib) {

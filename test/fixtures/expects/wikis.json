@@ -10,7 +10,7 @@
         {
           "path": "bar",
           "type": "lib",
-          "wiki": "Barを紹介\n\nこれはbaz\n\n// @ Baz Lib\n\nそしてこれがBar\n\n// @ Bar Lib"
+          "wiki": "Barを紹介\n\nこれはbaz\n\n// @ Baz Lib\n\nそしてこれがBar\n\n// @ Bar Lib\n\nそういえばFoo\n\n// @ Foo Lib\n"
         }
       ]
     },

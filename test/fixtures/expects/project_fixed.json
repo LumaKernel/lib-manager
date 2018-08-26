@@ -11,7 +11,7 @@
           {
             "path": "bar",
             "type": "lib",
-            "wiki": "---\nlayout: page\npermalink: hoge/bar\ntitle: すごいbar!\n\n---\n\nBarを紹介\n\nこれはbaz\n\n\n```cpp\n/// --- Baz Lib {{\"{{\"}}{ ///\nstruct Ex {};\n\n/// }}}--- ///\n```\n\n\nそしてこれがBar\n\n\n```cpp\nconst int HEY = \"hello\";\n```\n",
+            "wiki": "---\nlayout: page\npermalink: hoge/bar\ntitle: すごいbar!\n\n---\n\nBarを紹介\n\nこれはbaz\n\n\n```cpp\n/// --- Baz Lib {{\"{{\"}}{ ///\nstruct Ex {};\n\n/// }}}--- ///\n```\n\n\nそしてこれがBar\n\n\n```cpp\nconst int HEY = \"hello\";\n```\n\n\nそういえばFoo\n\n\n```cpp\n// '$'ばー\n/// --- Foo Lib {{\"{{\"}}{ ///\nnyan;\n{\n  /// --- Bar Lib {{\"{{\"}}{ ///\n\n  const int HEY = \"hello\";\n  /// }}}--- ///\n}\n/// }}}--- ///\n\n/// --- Baz Lib {{\"{{\"}}{ ///\nstruct Ex {};\n\n/// }}}--- ///\n```\n\n",
             "title": "すごいbar!",
             "permalink": "hoge/bar"
           }
@@ -51,8 +51,8 @@
       "name": "Foo Lib",
       "namespace": "",
       "filename": "foo.cpp",
-      "code": "/// --- Foo Lib {{{ ///\nnyan;\n{\n  /// --- Bar Lib {{{ ///\n\n  const int HEY = \"hello\";\n  /// }}}--- ///\n}\n/// }}}--- ///\n\n/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///",
-      "refactored": "// @import header\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n\n// @@\n// @name Foo Lib\n// @snippet foo\n// @alias heyhey\n// @alias ff bar_next\n// @verify-name string\n// @verify-url URL\n// @verify-solution URL\n// @verify-todo-name string\n// @verify-todo-url problem-URL\n\n/// --- Foo Lib {{{ ///\nnyan;\n{\n  /// --- Bar Lib {{{ ///\n\n  const int HEY = \"hello\";\n  /// }}}--- ///\n}\n/// }}}--- ///\n\n/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///\n",
+      "code": "// '$'ばー\n/// --- Foo Lib {{{ ///\nnyan;\n{\n  /// --- Bar Lib {{{ ///\n\n  const int HEY = \"hello\";\n  /// }}}--- ///\n}\n/// }}}--- ///\n\n/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///",
+      "refactored": "// @import header\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n\n// @@\n// @name Foo Lib\n// @snippet foo\n// @alias heyhey\n// @alias ff bar_next\n// @verify-name string\n// @verify-url URL\n// @verify-solution URL\n// @verify-todo-name string\n// @verify-todo-url problem-URL\n\n// '$'ばー\n/// --- Foo Lib {{{ ///\nnyan;\n{\n  /// --- Bar Lib {{{ ///\n\n  const int HEY = \"hello\";\n  /// }}}--- ///\n}\n/// }}}--- ///\n\n/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///\n",
       "enclosed": "/// --- Foo Lib {{{ ///\nnyan;\n{\n  /// --- Bar Lib {{{ ///\n\n  const int HEY = \"hello\";\n  /// }}}--- ///\n}\n/// }}}--- ///",
       "data": [
         [
@@ -88,7 +88,7 @@
           "problem-URL"
         ]
       ],
-      "old": "// @import header\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n\n// @@\n// @name Foo Lib\n// @snippet foo\n// @alias heyhey\n// @alias ff bar_next\n// @verify-name string\n// @verify-url URL\n// @verify-solution URL\n// @verify-todo-name string\n// @verify-todo-url problem-URL\n\n/// --- Foo Lib {{{ ///\nnyan;\n{\n  /// --- Bar Lib {{{ ///\n\n  const int HEY = \"hello\";\n  /// }}}--- ///\n}\n/// }}}--- ///\n\n/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///\n",
+      "old": "// @import header\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n\n// @@\n// @name Foo Lib\n// @snippet foo\n// @alias heyhey\n// @alias ff bar_next\n// @verify-name string\n// @verify-url URL\n// @verify-solution URL\n// @verify-todo-name string\n// @verify-todo-url problem-URL\n\n// '$'ばー\n/// --- Foo Lib {{{ ///\nnyan;\n{\n  /// --- Bar Lib {{{ ///\n\n  const int HEY = \"hello\";\n  /// }}}--- ///\n}\n/// }}}--- ///\n\n/// --- Baz Lib {{{ ///\nstruct Ex {};\n\n/// }}}--- ///\n",
       "require": [
         {
           "old": "  /// --- Bar Lib {{{ ///\n\n  const int HEY = \"hello\";\n  /// }}}--- ///",

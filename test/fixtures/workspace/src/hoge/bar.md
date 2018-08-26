@@ -7,3 +7,7 @@ Barを紹介
 そしてこれがBar
 
 // @ Bar Lib
+
+そういえばFoo
+
+// @ Foo Lib

@@ -3,8 +3,8 @@
     "name": "Foo Lib",
     "namespace": "",
     "filename": "foo.cpp",
-    "code": "\n\n/// --- Foo Lib {{{ ///\nnyan;\n{\n###1###\n}\n/// }}}--- ///\n\n###2###\n",
-    "refactored": "###3###\n// @name Foo Lib\n// @snippet foo\n// @alias heyhey\n// @alias ff bar_next\n// @verify-name string\n// @verify-url URL\n// @verify-solution URL\n// @verify-todo-name string\n// @verify-todo-url problem-URL\n\n/// --- Foo Lib {{{ ///\nnyan;\n{\n###1###\n}\n/// }}}--- ///\n\n###2###\n",
+    "code": "\n\n// '$'ばー\n/// --- Foo Lib {{{ ///\nnyan;\n{\n###1###\n}\n/// }}}--- ///\n\n###2###\n",
+    "refactored": "###3###\n// @name Foo Lib\n// @snippet foo\n// @alias heyhey\n// @alias ff bar_next\n// @verify-name string\n// @verify-url URL\n// @verify-solution URL\n// @verify-todo-name string\n// @verify-todo-url problem-URL\n\n// '$'ばー\n/// --- Foo Lib {{{ ///\nnyan;\n{\n###1###\n}\n/// }}}--- ///\n\n###2###\n",
     "enclosed": "/// --- Foo Lib {{{ ///\nnyan;\n{\n###1###\n}\n/// }}}--- ///",
     "data": [
       [
@@ -40,7 +40,7 @@
         "problem-URL"
       ]
     ],
-    "old": "// @import header\n// @@\n// @name Foo Lib\n// @snippet foo\n// @alias heyhey\n// @alias ff bar_next\n// @verify-name string\n// @verify-url URL\n// @verify-solution URL\n// @verify-todo-name string\n// @verify-todo-url problem-URL\n\n/// --- Foo Lib {{{ ///\nnyan;\n{\n  /// --- Bar Lib {{{ ///\n  piyo;\n  /// }}}--- ///\n}\n/// }}}--- ///\n\n/// --- Baz Lib {{{ ///\nhello;\n/// }}}--- ///\n",
+    "old": "// @import header\n// @@\n// @name Foo Lib\n// @snippet foo\n// @alias heyhey\n// @alias ff bar_next\n// @verify-name string\n// @verify-url URL\n// @verify-solution URL\n// @verify-todo-name string\n// @verify-todo-url problem-URL\n\n// '$'ばー\n/// --- Foo Lib {{{ ///\nnyan;\n{\n  /// --- Bar Lib {{{ ///\n  piyo;\n  /// }}}--- ///\n}\n/// }}}--- ///\n\n/// --- Baz Lib {{{ ///\nhello;\n/// }}}--- ///\n",
     "require": [
       {
         "old": "  /// --- Bar Lib {{{ ///\n  piyo;\n  /// }}}--- ///",
