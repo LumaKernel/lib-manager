@@ -4,11 +4,13 @@ import path from 'path'
 import pify from 'pify'
 import makeTemp from './helpers/makeTemp'
 
+const structRegExp = /(?<=^|\n)([ \t]*)(.*)struct (.+) {\n\1}([^;]*);(?=\n|$)/g
+
 // 独自ルールでフォーマット
 export async function format (code, config) {
   code = await clangFormat(code, config)
   if (config.FormatOption.AllowStructOneLine) {
-    code = code.replace(/(?:^|\n)(\s*)struct (.*) {\n\1};/g, '$1struct $2 {}')
+    code = code.replace(structRegExp, '$1$2struct $3 {}$4;')
   }
   return code
 }

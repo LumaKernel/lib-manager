@@ -27,8 +27,8 @@ export default function transformWiki (wikiYAML, wikis, libs, paths = []) {
     })
   }
   if (!wikis.title && lib) {
-    const title = lib.data.filter(el => el[1] === 'title')[0]
-    if (title) wikis.title = title
+    const title = lib.data.filter(([name]) => name === 'title')[0]
+    if (title) wikis.title = title[1]
   }
   wikis.title = wikis.title || wikis.path
   wikis.permalink = permalink

@@ -24,7 +24,16 @@ int a() {
   struct MEEE {
   };
   throw MEEE;
-}`
+}
+
+struct X {
+  int f() {
+    struct Y {
+    } y;
+    throw y;
+  }
+};
+`
   const res = await format(code, t.context.config)
   const exp = `struct Ex {};
 
@@ -36,6 +45,14 @@ struct heLLo {
 int a() {
   struct MEEE {};
   throw MEEE;
-}`
+}
+
+struct X {
+  int f() {
+    struct Y {} y;
+    throw y;
+  }
+};
+`
   t.is(res, exp)
 })

@@ -11,8 +11,8 @@
           {
             "path": "bar",
             "type": "lib",
-            "wiki": "---\nlayout: page\npermalink: hoge/bar\ntitle: bar\n\n---\n\nBarを紹介\n\nこれはbaz\n\n\n```cpp\n/// --- Baz Lib {{\"{{\"}}{ ///\nstruct Ex {};\n\n/// }}}--- ///\n```\n\n\nそしてこれがBar\n\n\n```cpp\nconst int HEY = \"hello\";\n```\n",
-            "title": "bar",
+            "wiki": "---\nlayout: page\npermalink: hoge/bar\ntitle: すごいbar!\n\n---\n\nBarを紹介\n\nこれはbaz\n\n\n```cpp\n/// --- Baz Lib {{\"{{\"}}{ ///\nstruct Ex {};\n\n/// }}}--- ///\n```\n\n\nそしてこれがBar\n\n\n```cpp\nconst int HEY = \"hello\";\n```\n",
+            "title": "すごいbar!",
             "permalink": "hoge/bar"
           }
         ],

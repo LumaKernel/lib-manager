@@ -7,7 +7,7 @@ last_update: someday
 
 # ねこ
 
-* [bar]({{ "hoge/bar" | relative_url }})
+* [すごいbar!]({{ "hoge/bar" | relative_url }})
 
 # [犬のはなし]({{ "fuga" | relative_url }})
 
