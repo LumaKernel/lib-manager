@@ -79,7 +79,7 @@ program
       const changes = check(config, project)
       if (changes.length !== 0) {
         if (cmd.fix) {
-          console.console(`fixing...`)
+          console.log(`fixing...`)
           fix(config, project)
         } else {
           console.error(`you need to fix`)
