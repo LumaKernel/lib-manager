@@ -93,9 +93,15 @@ export async function makeLib (old, namespace, filename, config) {
   // ライブラリの終わりが単体で残ると崩れる
   {
     const hollow = code.replace(makeLibraryRegExp('=' + name, 'g'), '')
-    if (libEndRegExp.test(hollow)) throw `${namespace} / ${filename} : ${name} : cannot include unit lib END "/// }}}--- ///`
+    if (libEndRegExp.test(hollow)) {
+      console.error(hollow)
+      throw `${namespace} / ${filename} : ${name} : cannot include unit lib END "/// }}}--- ///`
+    }
     // ついでにhead残りも調べる．
-    if (libHeadRegExp.test(hollow)) throw `${namespace} / ${filename} : ${name} : cannot include unit lib HEAD "/// --- {name} }}} ///"`
+    if (libHeadRegExp.test(hollow)) {
+      console.error(hollow)
+      throw `${namespace} / ${filename} : ${name} : cannot include unit lib HEAD "/// --- {name} }}} ///"`
+    }
   }
 
   const enclosed = enclosureCount ? code.match(makeLibraryRegExp('=' + name))[0] : enclose(name, code)
