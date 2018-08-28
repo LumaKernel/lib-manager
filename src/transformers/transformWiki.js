@@ -4,7 +4,7 @@ import { mdEscape } from '../helpers/escape'
 const libRegExp = name => new RegExp(
   String.raw`(?<=^|\n)// @ ${name}(?=\n|$)`, 'g')
 
-const mdYAMlRegExp = /^---\n(.*?)\n---(?:\n|$)/
+const mdYAMlRegExp = /^---\n(.*?)\n---(?:\n|$)/s
 
 // dfs
 /**
