@@ -29,7 +29,7 @@ test(async t => {
     await makeLib(old, 'abc', 'y.cpp', t.context.config)
   } catch (error) {
     if (typeof error === 'string') {
-      t.is(error, 'abc / y.cpp : test LIB : cannot include unit lib end')
+      t.is(error, 'abc / y.cpp : test LIB : cannot include unit lib END "/// }}}--- ///')
     } else {
       throw error
     }

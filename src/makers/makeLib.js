@@ -2,15 +2,16 @@ import { format } from '../formatter'
 import { hash, makeIDMaker } from '../id'
 
 const importRegExp = /(?<=^|\n)\/\/ @import (.+)\n?([\s\S]*?)\n\/\/ @@(?=\n|$)/
-const dataRegExp = /(?<=^|\n)\/\/ @(.+?)[ \t]+([^ \n].*)(?:\n|$)/
+const dataRegExp = /(?<=^|\n)\/\/ @([^ \t\n]+)[ \t]+([^ \n].*)(?:\n|$)/
 // (?<=^|\n)([ \t]*)\/\/\/ --- (?!Foo Lib)(.+?) {{{ \/\/\/[\s\S]*?\n\1\/\/\/ }}}--- \/\/\/(?=\n|$)
 const makeLibraryRegExp = (ex, flags) => new RegExp(
   String.raw`(?<=^|\n)([ \t]*)\/\/\/ --- (?${ex})(.+?) {{{ \/\/\/[\s\S]*?\n\1\/\/\/ }}}--- \/\/\/(?=\n|$)`,
   flags
 )
-const libEndRegExp = /(?:^|\n)[ \t]*\/\/\/ }}}--- \/\/\/(?:\n|&)/
+const libHeadRegExp = /(?:^|\n)([ \t]*)\/\/\/ --- (.+?) {{{ \/\/\/[\s\S]*?\n(?:\n|$)/
+const libEndRegExp = /(?:^|\n)[ \t]*\/\/\/ }}}--- \/\/\/(?:\n|$)/
 const newRegExp = /^\/\/ @new(?:[ \t]+([^ \n].*))?(?:\n|$)/
-const nameRegExp = /^\/\/ @[ \t]+([^ \n].*)(?:\n|$)/
+const nameRegExp = /(?<=^|\n)\/\/ @[ \t]+([^ \t\n].*)(?:\n|$)/
 
 const enclose = (name, code) => `/// --- ${name} {{{ ///\n${code}\n/// }}}--- ///`
 
@@ -31,7 +32,7 @@ export async function makeLib (old, namespace, filename, config) {
     if (newData && newData[1]) return newData[1]
     // @ {name}
     const nameData = code.match(nameRegExp)
-    if (nameData && nameData[1]) return nameData[1]
+    if (nameData) return nameData[1]
     // @name {name}
     let name = data.filter(el => el[0] === 'name')[0]
     if (!name) throw `${namespace} / ${filename} : no name`
@@ -42,9 +43,6 @@ export async function makeLib (old, namespace, filename, config) {
 
   // ライブラリに関して
   const libraryRegExp = makeLibraryRegExp('!' + name)
-  const enclosureCount =
-      (code.match(makeLibraryRegExp('=' + name, 'g')) || []).length
-  if (enclosureCount >= 2) throw `${namespace} / ${filename} : ${name} : cannot handle 2 or more enclosures "/// ---..."`
   const requirements = (code
     .match(new RegExp(libraryRegExp, 'g')) || [])
     .map(el => ({
@@ -61,6 +59,10 @@ export async function makeLib (old, namespace, filename, config) {
     )
   }
   //
+  // ライブラリの置き換えをした跡に調べないと壊れる
+  const enclosureCount =
+      (code.match(makeLibraryRegExp('=' + name, 'g')) || []).length
+  if (enclosureCount >= 2) throw `${namespace} / ${filename} : ${name} : cannot handle 2 or more enclosures "/// ---..."`
 
   // import 抽出
   const imports = (code
@@ -87,9 +89,12 @@ export async function makeLib (old, namespace, filename, config) {
   // refactored からは消さない
 
   // ライブラリの終わりが単体で残ると崩れる
-  if (libEndRegExp.test(
-    code.replace(makeLibraryRegExp('=' + name, 'g'), '')
-  )) throw `${namespace} / ${filename} : ${name} : cannot include unit lib end`
+  {
+    const hollow = code.replace(makeLibraryRegExp('=' + name, 'g'), '')
+    if (libEndRegExp.test(hollow)) throw `${namespace} / ${filename} : ${name} : cannot include unit lib END "/// }}}--- ///`
+    // ついでにhead残りも調べる．
+    if (libHeadRegExp.test(hollow)) throw `${namespace} / ${filename} : ${name} : cannot include unit lib HEAD "/// --- {name} }}} ///"`
+  }
 
   const enclosed = enclosureCount ? code.match(makeLibraryRegExp('=' + name))[0] : enclose(name, code)
 
