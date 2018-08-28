@@ -2,12 +2,14 @@ import { format } from '../formatter'
 import { hash, makeIDMaker } from '../id'
 
 const importRegExp = /(?<=^|\n)\/\/ @import (.+)\n?([\s\S]*?)\n\/\/ @@(?=\n|$)/
+
 const dataRegExp = /(?<=^|\n)\/\/ @([^ \t\n]+)[ \t]+([^ \n].*)(?:\n|$)/
 // (?<=^|\n)([ \t]*)\/\/\/ --- (?!Foo Lib)(.+?) {{{ \/\/\/[\s\S]*?\n\1\/\/\/ }}}--- \/\/\/(?=\n|$)
 const makeLibraryRegExp = (ex, flags) => new RegExp(
   String.raw`(?<=^|\n)([ \t]*)\/\/\/ --- (?${ex})(.+?) {{{ \/\/\/[\s\S]*?\n\1\/\/\/ }}}--- \/\/\/(?=\n|$)`,
   flags
 )
+
 const libHeadRegExp = /(?:^|\n)([ \t]*)\/\/\/ --- (.+?) {{{ \/\/\/[\s\S]*?\n(?:\n|$)/
 const libEndRegExp = /(?:^|\n)[ \t]*\/\/\/ }}}--- \/\/\/(?:\n|$)/
 const newRegExp = /^\/\/ @new(?:[ \t]+([^ \n].*))?(?:\n|$)/
