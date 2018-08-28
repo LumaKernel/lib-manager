@@ -1,4 +1,4 @@
-import { mdEscape, quoteEscape } from '../helpers/escape'
+import { mdEscape, mdTitleEscape, quoteEscape } from '../helpers/escape'
 
 export default function makeWikiTop (topRaw, wikis, lastUpdate) {
   const wikiList0 = []
@@ -16,7 +16,7 @@ export default function makeWikiTop (topRaw, wikis, lastUpdate) {
       return ''
     } else {
       const title = el.permalink
-        ? `[${mdEscape(el.title)}]({{ "${quoteEscape(el.permalink)}" | relative_url }})`
+        ? `[${mdTitleEscape(el.title)}]({{ "${quoteEscape(el.permalink)}" | relative_url }})`
         : mdEscape(el.title)
       return mark(el.depth, el.type) + ' ' + title
     }
