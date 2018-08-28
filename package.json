@@ -1,10 +1,6 @@
 {
   "name": "libman",
-<<<<<<< HEAD
-  "version": "0.5.0",
-=======
-  "version": "0.4.2",
->>>>>>> 44a9a21e65fd94d5eb2e7fc33d7948cbc90c5e80
+  "version": "0.5.1",
   "description": "the manager for libs",
   "main": "index.js",
   "scripts": {
