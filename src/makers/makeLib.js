@@ -5,8 +5,11 @@ const importRegExp = /(?<=^|\n)\/\/ @import (.+)\n?([\s\S]*?)\n\/\/ @@(?=\n|$)/
 
 const dataRegExp = /(?<=^|\n)\/\/ @([^ \t\n]+)[ \t]+([^ \n].*)(?:\n|$)/
 // (?<=^|\n)([ \t]*)\/\/\/ --- (?!Foo Lib)(.+?) {{{ \/\/\/[\s\S]*?\n\1\/\/\/ }}}--- \/\/\/(?=\n|$)
+const libHead = String.raw`\/\/\/ --- .* {{{ \/\/\/\n`
 const makeLibraryRegExp = (ex, flags) => new RegExp(
-  String.raw`(?<=^|\n)([ \t]*)\/\/\/ --- (?${ex})(.+?) {{{ \/\/\/[\s\S]*?\n\1\/\/\/ }}}--- \/\/\/(?=\n|$)`,
+  String.raw`(?<=^|\n)([ \t]*)\/\/\/ --- (?${ex})(.+?) {{{ \/\/\/\n(?!${libHead})` +
+  String.raw`(?:[\s\S](?!${libHead}))*?\n` +
+  String.raw`\1\/\/\/ }}}--- \/\/\/(?=\n|$)`,
   flags
 )
 
@@ -44,22 +47,29 @@ export async function makeLib (old, namespace, filename, config) {
   //
 
   // ライブラリに関して
-  const libraryRegExp = makeLibraryRegExp('!' + name)
-  const requirements = (code
-    .match(new RegExp(libraryRegExp, 'g')) || [])
-    .map(el => ({
-      old: el, name: el.match(libraryRegExp)[2], id: IDMaker.next().value
-    })) // {old, name}
-    // ライブラリの置き換え
-  {
-    let i = 0
-    code = code.replace(
-      new RegExp(libraryRegExp, 'g'),
-      () => {
-        return hash(requirements[i++].id)
+  const requirements = (() => {
+    let _requirements = []
+    const libraryRegExp = makeLibraryRegExp('!' + name)
+    while (libraryRegExp.test(code)) {
+      const tmp = (code
+        .match(new RegExp(libraryRegExp, 'g')) || [])
+        .map(el => ({
+          old: el, name: el.match(libraryRegExp)[2], id: IDMaker.next().value
+        })) // {old, name, id}
+      _requirements = [..._requirements, ...tmp]
+      // ライブラリの置き換え
+      {
+        let i = 0
+        code = code.replace(
+          new RegExp(libraryRegExp, 'g'),
+          () => {
+            return hash(tmp[i++].id)
+          }
+        )
       }
-    )
-  }
+    }
+    return _requirements
+  })()
   //
   // ライブラリの置き換えをした跡に調べないと壊れる
   const enclosureCount =
