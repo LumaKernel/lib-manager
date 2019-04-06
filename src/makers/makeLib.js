@@ -4,11 +4,11 @@ import { hash, makeIDMaker } from '../id'
 const importRegExp = /(?<=^|\n)\/\/ @import (.+)\n?([\s\S]*?)\n\/\/ @@(?=\n|$)/
 
 const dataRegExp = /(?<=^|\n)\/\/ @([^ \t\n]+)[ \t]+([^ \n].*)(?:\n|$)/
-// (?<=^|\n)([ \t]*)\/\/\/ --- (?!Foo Lib)(.+?) {{{ \/\/\/[\s\S]*?\n\1\/\/\/ }}}--- \/\/\/(?=\n|$)
+// (?<=^|\n)([ \t]*)\/\/\/ --- (?=Foo Lib)(.+?) {{{ \/\/\/(?:\n([\s\S]*?)\n|\n)\1\/\/\/ }}}--- \/\/\/(?=\n|$)
 const libHead = String.raw`\/\/\/ --- .* {{{ \/\/\/\n`
 const makeLibraryRegExp = (ex, flags) => new RegExp(
-  String.raw`(?<=^|\n)([ \t]*)\/\/\/ --- (?${ex})(.+?) {{{ \/\/\/\n(?!${libHead})` +
-  String.raw`(?:[\s\S](?!${libHead}))*?\n` +
+  String.raw`(?<=^|\n)([ \t]*)\/\/\/ --- (?${ex})(.+?) {{{ \/\/\/` +
+  String.raw`(?:\n((?:[\s\S](?!${libHead}))*?)\n|\n)` +
   String.raw`\1\/\/\/ }}}--- \/\/\/(?=\n|$)`,
   flags
 )
@@ -16,7 +16,7 @@ const makeLibraryRegExp = (ex, flags) => new RegExp(
 const libHeadRegExp = /(?:^|\n)([ \t]*)\/\/\/ --- (.+?) {{{ \/\/\/[\s\S]*?\n(?:\n|$)/
 const libEndRegExp = /(?:^|\n)[ \t]*\/\/\/ }}}--- \/\/\/(?:\n|$)/
 const newRegExp = /^\/\/ @new(?:[ \t]+([^ \n].*))?(?:\n|$)/
-const nameRegExp = /(?<=^|\n)\/\/ @[ \t]+([^ \t\n].*)(?:\n|$)/
+const nameRegExp = /(?<=^|\n)\/\/ @[ \t]+([^\n].*)(?:\n|$)/
 
 const enclose = (name, code) => `/// --- ${name} {{{ ///\n${code}\n/// }}}--- ///`
 

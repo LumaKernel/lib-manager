@@ -7,8 +7,6 @@ prepareWorkSpace(test)
 
 test(async t => {
   const libs = JSON.parse(readFileSync('./test/fixtures/expects/libs_transformed.json').toString())
-  const exp = readFileSync('./test/fixtures/expects/libman.snip').toString()
   const snippet = makeSnippet(t.context.config, libs)
-  // console.log(snippet)
-  t.is(snippet, exp)
+  t.snapshot(snippet)
 })

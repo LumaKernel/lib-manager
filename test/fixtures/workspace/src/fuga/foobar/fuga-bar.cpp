@@ -1,4 +1,4 @@
-// @name FugaBar
+// @ FugaBar
 /// --- Baz Lib {{{ ///
 struct Ex {
 };

@@ -21,7 +21,7 @@ test(async t => {
 test(async t => {
   t.plan(1)
   const old = `
-// @name test LIB
+// @ test LIB
 /// {{{ ///
 /// }}}--- ///
 `
@@ -39,7 +39,7 @@ test(async t => {
 test(async t => {
   t.plan(1)
   const old = `
-// @name TEST my LIB
+// @ TEST my LIB
 /// --- TEST my LIB {{{ ///
 a;
 /// }}}--- ///

@@ -35,11 +35,9 @@ test('printed が新しく作られる', async t => {
 test('printable.md が出力される', async t => {
   const config = t.context.config
   const dist = resolve(process.cwd(), config.WorkingDir, config.DistDir)
-  const printableExp = readFileSync('./test/fixtures/expects/printable.md').toString()
   t.true(existsSync(resolve(dist, 'printable.md')))
   const printable = readFileSync(resolve(dist, 'printable.md')).toString()
-
-  t.is(printable, printableExp)
+  t.snapshot(printable)
 })
 
 test('copywiki に指定したディレクトリにwikiがコピーされ，古いのは消される', async t => {
@@ -51,9 +49,7 @@ test('copywiki に指定したディレクトリにwikiがコピーされ，古�
 
 test('スニペットをコピーする', async t => {
   const config = t.context.config
-  const snippetExp = readFileSync('./test/fixtures/expects/libman.snip').toString()
-  // console.log(readFileSync(config.CopySnippet).toString())
-  t.is(readFileSync(config.CopySnippet).toString(), snippetExp)
+  t.snapshot(readFileSync(config.CopySnippet).toString())
 })
 
 test('printlist.md がなくなり， printlist_used.md が新しく作られる', async t => {

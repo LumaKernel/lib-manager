@@ -1,7 +1,6 @@
 import test from 'ava'
 import { readFileSync, removeSync } from 'fs-extra'
 import { resolve } from 'path'
-import {readFileSync} from "fs-extra"
 import buildInit from '../../src/commands/buidInit'
 import { prepareWorkSpace } from '../helpers/prepareWorkSpace'
 

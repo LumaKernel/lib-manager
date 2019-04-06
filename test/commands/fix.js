@@ -15,11 +15,9 @@ test('fixしたらcheckが通る', async t => {
     files: JSON.parse(readFileSync('./test/fixtures/expects/files.json').toString()),
     templates: JSON.parse(readFileSync('./test/fixtures/expects/templates.json').toString()),
   }
-  const exp = JSON.parse(readFileSync('./test/fixtures/expects/project_fixed.json').toString())
   fix(t.context.config, project)
   const fixedProject = await makeProject(t.context.config)
-  t.log(JSON.stringify(fixedProject))
-  t.deepEqual(fixedProject, exp)
+  t.snapshot(fixedProject)
   Object.values(fixedProject.libs).forEach(el => {
     t.is(el.refactored, el.old)
   })

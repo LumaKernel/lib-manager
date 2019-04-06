@@ -17,7 +17,7 @@ int func(int x) {
 }
 
 // @new
-// @name FugaFoo-expanded
+// @ FugaFoo-expanded
 // @snippet abc
 int abc(int x) {
   return x * x;

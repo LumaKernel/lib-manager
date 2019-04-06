@@ -42,8 +42,7 @@ struct heLLo {
   void dont() {}
 };
 
-int a() {
-  struct MEEE {};
+int a() { struct MEEE { };
   throw MEEE;
 }
 

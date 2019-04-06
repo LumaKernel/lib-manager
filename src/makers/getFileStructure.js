@@ -1,6 +1,7 @@
 import { existsSync } from 'fs-extra'
 import klawSync from 'klaw-sync'
 import path from 'path'
+import relative from 'relative'
 const { resolve } = path
 
 export default function getFileStructure (config) {
@@ -8,7 +9,7 @@ export default function getFileStructure (config) {
   if (!existsSync(src)) throw 'no src'
   // src下のすべてのファイルのパスを取得
   const all = klawSync(src, {nodir: true}).map(el => {
-    const list = el.path.split('/')
+    const list = relative(src, el.path).split('\\')
     const name = list.pop()
     return [list, name]
   })
