@@ -1,7 +1,7 @@
 import test from 'ava'
 import { readFileSync, removeSync } from 'fs-extra'
 import { resolve } from 'path'
-import { cat } from 'shelljs'
+import {readFileSync} from "fs-extra"
 import buildInit from '../../src/commands/buidInit'
 import { prepareWorkSpace } from '../helpers/prepareWorkSpace'
 
@@ -25,8 +25,8 @@ test.beforeEach(t => {
 test(async t => {
   const config = t.context.config
   const src = resolve(process.cwd(), config.WorkingDir, config.SrcDir)
-  const printlistExp = JSON.parse(cat('./test/fixtures/expects/printlist.json').stdout)
-  const printlist = JSON.parse(cat(resolve(src, 'printlist.json')).stdout)
+  const printlistExp = JSON.parse(readFileSync('./test/fixtures/expects/printlist.json').toString())
+  const printlist = JSON.parse(readFileSync(resolve(src, 'printlist.json')).toString())
 
   // console.log(JSON.stringify(printlist))
   t.deepEqual(printlist, printlistExp)

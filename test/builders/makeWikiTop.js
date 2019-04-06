@@ -1,14 +1,14 @@
 import test from 'ava'
-import { cat } from 'shelljs'
+import {readFileSync} from 'fs-extra'
 import makeWikiTop from '../../src/builders/makeWikiTop'
 import { prepareWorkSpace } from '../helpers/prepareWorkSpace'
 
 prepareWorkSpace(test)
 
 test(async t => {
-  const wikis = JSON.parse(cat('./test/fixtures/expects/wikis_transformed.json').stdout)
-  const topRaw = cat('./test/fixtures/workspace/src/index.md').stdout
-  const exp = cat('./test/fixtures/expects/index.md').stdout
+  const wikis = JSON.parse(readFileSync('./test/fixtures/expects/wikis_transformed.json').toString())
+  const topRaw = readFileSync('./test/fixtures/workspace/src/index.md').toString()
+  const exp = readFileSync('./test/fixtures/expects/index.md').toString()
   const wikiTop = makeWikiTop(topRaw, wikis, 'someday')
   // console.log(wikiTop)
   t.deepEqual(wikiTop, exp)

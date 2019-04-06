@@ -1,15 +1,14 @@
+import { existsSync } from 'fs-extra'
+import klawSync from 'klaw-sync'
 import path from 'path'
-import shelljs from 'shelljs'
-import fs from 'fs-extra'
 const { resolve } = path
-const { ls } = shelljs
-const {existsSync} = fs
 
 export default function getFileStructure (config) {
   const src = resolve(process.cwd(), config.WorkingDir, config.SrcDir)
   if (!existsSync(src)) throw 'no src'
-  const all = ls('-AR', src).map(el => {
-    const list = el.split('/')
+  // src下のすべてのファイルのパスを取得
+  const all = klawSync(src, {nodir: true}).map(el => {
+    const list = el.path.split('/')
     const name = list.pop()
     return [list, name]
   })

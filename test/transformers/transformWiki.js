@@ -1,5 +1,5 @@
 import test from 'ava'
-import { cat } from 'shelljs'
+import {readFileSync} from 'fs-extra'
 import transformWiki from '../../src/transformers/transformWiki'
 import { prepareWorkSpace } from '../helpers/prepareWorkSpace'
 
@@ -7,10 +7,8 @@ prepareWorkSpace(test)
 
 // "// @ Foo Lib" とかを変換する
 test('transform wiki', async t => {
-  const wikis = JSON.parse(cat('./test/fixtures/expects/wikis.json'))
-  const libs = Object.freeze(JSON.parse(cat('./test/fixtures/expects/libs_transformed.json')))
-  const exp = JSON.parse(cat('./test/fixtures/expects/wikis_transformed.json'))
+  const wikis = JSON.parse(readFileSync('./test/fixtures/expects/wikis.json').toString)
+  const libs = Object.freeze(JSON.parse(readFileSync('./test/fixtures/expects/libs_transformed.json').toString()))
   transformWiki(t.context.config.wikiYAML, wikis, libs)
-  t.log(JSON.stringify(wikis))
-  t.deepEqual(wikis, exp)
+  t.snapshot(wikis)
 })

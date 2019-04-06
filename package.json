@@ -4,7 +4,7 @@
   "description": "the manager for libs",
   "main": "index.js",
   "scripts": {
-    "test": "ava",
+    "test": "ava --color",
     "build": "babel src -d lib",
     "start": "babel-node index.js"
   },
@@ -45,11 +45,12 @@
   "dependencies": {
     "array-foreach-async": "^1.0.1",
     "commander": "^2.17.1",
+    "exit": "^0.1.2",
     "fs-extra": "^7.0.0",
     "js-yaml": "^3.12.0",
+    "klaw-sync": "^6.0.0",
     "moment": "^2.22.2",
     "pify": "^4.0.0",
-    "shelljs": "^0.8.2",
     "source-map-support": "^0.5.9"
   }
 }

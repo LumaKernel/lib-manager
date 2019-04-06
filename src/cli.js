@@ -2,7 +2,6 @@ import program from 'commander'
 import { existsSync, removeSync, writeFileSync } from 'fs-extra'
 import yaml from 'js-yaml'
 import path from 'path'
-import shelljs from 'shelljs'
 import buildInit from './commands/buidInit'
 import build from './commands/build'
 import { check } from './commands/check'
@@ -10,8 +9,8 @@ import { fix } from './commands/fix'
 import defaultConfig from './constants/defaultConfig'
 import makeConfig from './makeConfig'
 import makeProject from './makers/makeProject'
+import exit from 'exit'
 const { resolve } = path
-const { exit } = shelljs
 
 const version = require('../package.json').version
 
