@@ -56,6 +56,8 @@ export default function transformWiki (wikiYAML, wikis, libs, paths = [], ids = 
   paths = [...paths, wikis.path]
   ids = [...ids, id]
   const permalink = wikis.permalink || ids.filter(e => e).join('/')
+
+  // TODO : 計算量破滅してないかここ
   if (wikis.wiki) {
     Object.entries(libs).forEach(([key, value]) => {
       wikis.wiki = wikis.wiki

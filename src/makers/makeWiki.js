@@ -18,7 +18,9 @@ export default function makeWiki (config, nowdir = null, path = '') {
   wiki.path = path
   if (Array.isArray(typeof wikiData.orde)) throw `${nowdir} : order must be array`
   const wikipage = resolve(nowdir, 'wiki.md')
-  if (existsSync(wikipage)) wiki.wiki = readFileSync(wikipage).toString()
+
+  // 改行コードを統一
+  if (existsSync(wikipage)) wiki.wiki = myReadFile(wikipage)
   const child = []
   wikiData.order.forEach(el => {
     const mdfile = resolve(nowdir, el + '.md')
@@ -27,7 +29,7 @@ export default function makeWiki (config, nowdir = null, path = '') {
       child.push({
         path: el,
         type: 'lib',
-        wiki: readFileSync(mdfile).toString(),
+        wiki: myReadFile(mdfile),
       })
     } else if (existsSync(newdir)) {
       const d = makeWiki(config, newdir, el)
@@ -38,4 +40,8 @@ export default function makeWiki (config, nowdir = null, path = '') {
   })
   wiki.child = child
   return wiki
+}
+
+function myReadFile (path) {
+  return readFileSync(path).toString().replace(/\r\n?/g, '\n')
 }
