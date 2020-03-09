@@ -22,14 +22,16 @@ export default function build (config, project, one = false) {
     writeFileSync(printedPath, '{}')
   }
 
-  check(config.CopyWiki, 'wiki')
 
   removeSync(dist)
   mkdirsSync(dist)
   // wikiを作る
   buildWiki(config, project)
-  autoRemove(config.CopyWiki)
-  copy(dist, config.CopyWiki, 'wiki')
+
+  if (check(config.CopyWiki, 'wiki')) {
+    autoRemove(config.CopyWiki)
+    copy(dist, config.CopyWiki, 'wiki')
+  }
   // snippetsを作る(1ファイル)
   const snippet = makeSnippet(config, project.libs)
   writeFileSync(resolve(dist, 'libman.snip'), snippet)
@@ -49,12 +51,15 @@ export default function build (config, project, one = false) {
 }
 
 function check (data, name) {
+  if (!data) return false
   if (data && typeof data === 'string') {
     const cp = resolve(process.cwd(), data)
     if (!existsSync(cp)) {
-      throw `${cp} doesn't exist, skipped copy ` + name
+      console.error(`${cp} doesn't exist, skipped copy ` + name)
+      return false
     }
   }
+  return true
 }
 
 function copy (dist, data, name) {
